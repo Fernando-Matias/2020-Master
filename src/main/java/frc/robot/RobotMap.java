@@ -26,6 +26,9 @@ public class RobotMap {
 
     //falcon Shooter ID
     public static final int mFalconShooter_ID = 12;
+
+    //Servo IDS
+    public static final int mTurretServo_ID = 0;
   
     //Controls
     public static final int mLeftStickPort = 0;

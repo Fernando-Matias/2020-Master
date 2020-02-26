@@ -7,22 +7,51 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.RobotMap;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Servo;
 
 public class Turret extends SubsystemBase {
+
+  //calling limelight Class
+  Limelight limelight = Limelight.getInstance();
+  
+  //creating Turret Class
   private static final Turret instance = new Turret();
 
   public static Turret GetInstance() {
     return instance;
   }
 
+  //declaring servo name
   public Servo TurretServo;
+  
+  public Turret(){
+    TurretServo = new Servo(RobotMap.mTurretServo_ID);
+  } 
 
-  public void spintheServo(){
+  public void turretRightTurn(){
+    TurretServo.setSpeed(1.0);
     TurretServo.set(0.0);
-    TurretServo.set(0.9);
   }
+
+  public void turretLeftTurn(){
+    TurretServo.setSpeed(1.0);
+    TurretServo.set(1.0);
+  }
+
+/*   // deadband
+  if (m_Stick.getRawAxis(1) >= -0.25 && m_Stick.getRawAxis(1) <= 0.25 ){
+      TurretServo.set(0.5);
+  }
+  else if (m_Stick.getRawAxis(1) > 0.25 ){
+    TurretServo.set(1.0);
+  }
+  else if (m_Stick.getRawAxis(1) < -0.25){
+    TurretServo.set(0.0);
+  } */
+  
 
   
 
