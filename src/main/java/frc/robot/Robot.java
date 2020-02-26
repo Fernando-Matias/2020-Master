@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.SerialPort;
 
 import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Limelight;
+//import frc.robot.subsystems.Limelight;
 
 
 /**
@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public AHRS ahrs;
 
-  Limelight limelight = Limelight.getInstance();
+  //Limelight limelight = Limelight.getInstance();
   DriveTrain driveTrain = DriveTrain.getInstance();
 
   //private RobotContainer m_robotContainer;
@@ -74,7 +74,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     
     CommandScheduler.getInstance().run();
-    limelight.LimelightOutput();
+    //limelight.LimelightOutput();
     driveTrain.NavXOutput();
     
     

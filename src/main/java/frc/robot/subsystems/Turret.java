@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.Servo;
 public class Turret extends SubsystemBase {
 
   //calling limelight Class
-  Limelight limelight = Limelight.getInstance();
+  //Limelight limelight = Limelight.getInstance();
   
   //creating Turret Class
   private static final Turret instance = new Turret();
