@@ -15,5 +15,51 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+
+ /**
+ * @author Fernando Matias
+ */
+
 public final class Constants {
+    //Varibles for Turning on Drivetrain
+    public static double kTurnrateCurve = 0.1;
+    public static double kTurnrateLimit = 0.8;
+
+    //yes just yes (easier this way)
+    public static final boolean On = true;
+    public static final boolean Off = false;
+
+    //pnuematics on driveTrain
+    public static final int highGear = 0;
+    public static final int lowGear = 1;
+    public static int currentGear = highGear;
+
+    //if intake is extended or retreacted
+    public static final int intakeStateExtended = 0;
+    public static final int intakeStateRetracted = 1;
+    public static int intakeState = intakeStateRetracted;
+
+    //if popup mechanism is up or down
+    public static final int popupStateUp = 0;
+    public static final int popupStateDown = 1;
+    public static int popupState = popupStateDown; 
+
+    //Control pannel manipulator 
+    public static final int cpmStateRetracted = 0;
+    public static final int cpmStateExtended = 1;
+    public static int cpmState = cpmStateExtended;
+
+    //Control pannel manipulator 
+    public static final int NavxResete = 0;
+    public static final int Navxold = 1;
+    public static int NavxState = Navxold;
+
+    //Timeout for Encoders
+    public static final int kTimeoutms = 10;
+
+    //PIDTurn
+    public static final double kTurn_P = 0.2;
+    public static final double kTurn_I = 0;
+    public static final double kTurn_D = 0;
+    public static final double kToleranceDegrees = 2.0;
 }
