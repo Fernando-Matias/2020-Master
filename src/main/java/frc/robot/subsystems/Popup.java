@@ -32,29 +32,48 @@ public class Popup extends SubsystemBase {
   public Solenoid popupUp, popupDown;
 
   //Creating motors
-  public TalonSRX pulleyMotor;
+  public TalonSRX pulleyTopMotor, pulleyBottomMotor;
   
   public Popup() {
 /*     popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.pPopupUp_ID);
     popupDown = new Solenoid(RobotMap.PCM_B, RobotMap.pPopupDown_ID);
  */
-    pulleyMotor.configFactoryDefault();
-    pulleyMotor.setNeutralMode(NeutralMode.Brake);
-    pulleyMotor.configContinuousCurrentLimit(40);
-    pulleyMotor.configPeakCurrentLimit(0);
-    pulleyMotor.enableCurrentLimit(true);
-    pulleyMotor.setInverted(false);
+    pulleyTopMotor.configFactoryDefault();
+    pulleyTopMotor.setNeutralMode(NeutralMode.Brake);
+    pulleyTopMotor.configContinuousCurrentLimit(40);
+    pulleyTopMotor.configPeakCurrentLimit(0);
+    pulleyTopMotor.enableCurrentLimit(true);
+    pulleyTopMotor.setInverted(false);
+
+    pulleyBottomMotor.configFactoryDefault();
+    pulleyBottomMotor.setNeutralMode(NeutralMode.Brake);
+    pulleyBottomMotor.configContinuousCurrentLimit(40);
+    pulleyBottomMotor.configPeakCurrentLimit(0);
+    pulleyBottomMotor.enableCurrentLimit(true);
+    pulleyBottomMotor.setInverted(false);
   }
 
-  public void UpThePulley(){
-    pulleyMotor.set(ControlMode.PercentOutput, 1.0);
+  public void UpBottomPulley(){
+    pulleyTopMotor.set(ControlMode.PercentOutput, 0.5);
+    Constants.pulleyMotorTopState = Constants.pulleyMotorStateSpinning;
   }
 
-  public void StopThePulley() {
-    pulleyMotor.set(ControlMode.PercentOutput, 0.0);
+  public void UpTopPulley(){
+    pulleyBottomMotor.set(ControlMode.PercentOutput, 0.5);
+    Constants.pulleyMotorState = Constants.pulleyMotorStateSpinning;
   }
 
-/*   public void PopUp() {
+  public void StopBottomPulley(){
+    pulleyBottomMotor.set(ControlMode.PercentOutput, 0.0);
+    Constants.pulleyMotorState = Constants.pulleyMotorStateStill;
+  }
+
+  public void StopTopPulley() {
+    pulleyTopMotor.set(ControlMode.PercentOutput, 0.0);
+    Constants.pulleyMotorTopState = Constants.pulleyMotorTopStateStill;
+  }
+
+  /* public void PopUp() {
     popupUp.set(Constants.On);
     popupDown.set(Constants.Off);
     Constants.popupState = Constants.popupStateUp;

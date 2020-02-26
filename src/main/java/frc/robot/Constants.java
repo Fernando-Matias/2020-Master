@@ -57,6 +57,47 @@ public final class Constants {
     //Timeout for Encoders
     public static final int kTimeoutms = 10;
 
+    //controls 
+    public static final int pulleyMotorStateSpinning = 0;
+    public static final int pulleyMotorStateStill = 1;
+    public static int pulleyMotorState = pulleyMotorStateStill;
+    
+    public static final int pulleyMotorTopStateSpinning = 0;
+    public static final int pulleyMotorTopStateStill = 1;
+    public static int pulleyMotorTopState = pulleyMotorTopStateStill;
+     
+    public static final int intakeMotorSpinning = 0;
+    public static final int intakeMotorStill = 1;
+    public static int intakeMotorState = intakeMotorStill;
+    
+    public static final int neoShooterSpin = 0;
+    public static final int neoShooterStill = 1;
+    public static int neoShooterState = neoShooterStill;
+    
+    public static final int driveBaseOrintationFront = 0;
+    public static final int driveBaseOrintationBack = 1;
+    public static int driveBaseOrintation = driveBaseOrintationFront;
+    
+    public static final int turretMotorSpin = 0;
+    public static final int turretMotorStill = 1;
+    public static int turretMotorState = turretMotorStill;
+    
+    public static final int buttonAPressed = 0;
+    public static final int buttonAPressed2 = 1;
+    public static int buttonAState = buttonAPressed2;
+    
+    public static final int buttonBPressed = 0;
+    public static final int buttonBPressed2 = 1;
+    public static int buttonBState = buttonBPressed2;
+    
+    public static final int buttonXPressed = 0;
+    public static final int buttonXPressed2 = 1;
+    public static int buttonXState = buttonXPressed2;
+    
+    public static final int buttonYPressed = 0;
+    public static final int buttonYPressed2 = 1;
+    public static int buttonYState = buttonYPressed2;
+
     //PIDTurn
     public static final double kTurn_P = 0.2;
     public static final double kTurn_I = 0;

@@ -23,6 +23,9 @@ public class RobotMap {
 
     //Shooter Neo
     public static final int mNeoShooter_ID = 9;
+
+    //falcon Shooter ID
+    public static final int mFalconShooter_ID = 12;
   
     //Controls
     public static final int mLeftStickPort = 0;
@@ -38,6 +41,10 @@ public class RobotMap {
 
     //Control pannel manipulator 
     public static final int mCPManipulator_ID = 8;
+
+    //Pulley Motors
+    public static final int mBottomPulley_ID = 9;
+    public static final int mTopPulley_ID = 15;
 
     //pnuematics
     //intake

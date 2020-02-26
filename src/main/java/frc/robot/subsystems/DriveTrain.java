@@ -179,6 +179,10 @@ public static DifferentialDrive mDrive;
     SmartDashboard.putNumber("getYaw", ahrs.getYaw() );
   }
 
+  public void DriveFoward(){
+    
+  }
+
   //turning algirithm
   public void Curvature(double ThrottleAxis, double TurnAxis) {
     TurnRateCurved = (Constants.kTurnrateCurve*Math.pow(TurnAxis,3)+(1-Constants.kTurnrateCurve)*TurnAxis*Constants.kTurnrateLimit);

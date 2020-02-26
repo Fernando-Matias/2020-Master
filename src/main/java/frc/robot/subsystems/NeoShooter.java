@@ -33,6 +33,14 @@ public class NeoShooter extends SubsystemBase {
 
 
   }
+  public void NeoShoot() {
+    NeoShooter.set(-0.80);
+    //Constants.neoShooterState = Constants.neoShooterSpin;
+  }
+  public void NeoNoShoot() {
+    NeoShooter.set(0.0);
+    //Constants.neoShooterState = Constants.neoShooterStill;
+  }
 
   @Override
   public void periodic() {
