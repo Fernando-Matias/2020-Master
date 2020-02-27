@@ -33,7 +33,7 @@ import frc.robot.subsystems.DriveTrain;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public AHRS ahrs;
-
+  OI oi = new OI();
   //Limelight limelight = Limelight.getInstance();
   DriveTrain driveTrain = DriveTrain.getInstance();
 
@@ -49,12 +49,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
 
     //m_robotContainer = new RobotContainer();
-    OI OI = new OI();
 
     OI.registerControls();
     
-    
-
 
 
   }
@@ -120,6 +117,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
   }
 
   /**
@@ -127,7 +125,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    if (Constants.DriverOrientation == Constants.FrontOrientation) {
+    drivetrain.curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
+    Scheduler.getInstance().run();
+    }
 
+    else if (Constants.DriverOrientation == Constants.BackOrientation) {
+    drivetrain.curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
+    Scheduler.getInstance().run();
+    }
   }
 
   @Override
