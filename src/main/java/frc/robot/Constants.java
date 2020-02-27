@@ -68,6 +68,11 @@ public final class Constants {
     public static final int RampingnotReset = 1;
     public static int RampingState = RampingnotReset;
 
+    //Orientation State 
+    public static final int FrontOrientation = 0;
+    public static final int BackOrientation = 1;
+    public static int DriverOrientation = FrontOrientation;
+
     //Timeout for Encoders
     public static final int kTimeoutms = 10;
 

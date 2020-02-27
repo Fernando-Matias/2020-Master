@@ -126,13 +126,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     if (Constants.DriverOrientation == Constants.FrontOrientation) {
-    drivetrain.curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
-    Scheduler.getInstance().run();
+      driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
     }
 
     else if (Constants.DriverOrientation == Constants.BackOrientation) {
-    drivetrain.curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
-    Scheduler.getInstance().run();
+      driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
     }
   }
 
