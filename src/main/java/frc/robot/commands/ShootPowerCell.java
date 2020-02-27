@@ -7,29 +7,41 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ControlPanelManipulator;
+import frc.robot.subsystems.FalconShooter;
+import frc.robot.Constants;
 
-public class SpinPort8 extends CommandBase {
+public class ShootPowerCell extends CommandBase {
   /**
-   * Creates a new SpinPort8.
+   * Creates a new ShootPowerCell.
    */
-  ControlPanelManipulator controlPanelManipulator = ControlPanelManipulator.GetInstance();
 
-  public SpinPort8() {
+  FalconShooter falconShooter = FalconShooter.getInstance();
+
+  public ShootPowerCell() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    controlPanelManipulator.SpinControlPanel();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+     if (Constants.RampingState == Constants.RampingnotReset) {
+      falconShooter.RampingSequence();
+      Timer.delay(.5);
+      falconShooter.ShootPowerCell();
+      Constants.RampingState = Constants.RampingReset;
+    }
+    else {
 
+    }
+
+    
   }
 
   // Called once the command ends or is interrupted.
