@@ -1,4 +1,4 @@
-package frc.robot;
+/* package frc.robot;
 
 import com.team254.frc2019.auto.modes.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -123,4 +123,4 @@ public class AutoModeSelector {
     public boolean isDriveByCamera() {
         return mCachedDesiredMode == DesiredMode.DRIVE_BY_CAMERA;
     }
-}
+} */
