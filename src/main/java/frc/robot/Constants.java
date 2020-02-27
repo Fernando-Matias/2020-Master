@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import frc.robot.subsystems.Limelight.LimelightConstants;
+//import frc.robot.subsystems.Limelight.LimelightConstants;
 import frc.robot.utility.geometry.Pose2d;
 import frc.robot.utility.geometry.Translation2d;
 import frc.robot.utility.geometry.Rotation2d;
@@ -140,7 +140,7 @@ public final class Constants {
     public static final double kTurretToArmOffset = -2.5;  // in
     public static final double kWristToTremorsEnd = 15.75;  // in
 
-    //Limelight
+ /*    //Limelight
     public static final LimelightConstants kLimelightConstants = new LimelightConstants();
     static {
         kLimelightConstants.kName = "Limelight";
@@ -148,7 +148,7 @@ public final class Constants {
         kLimelightConstants.kHeight = 7.221;  // inches
         kLimelightConstants.kTurretToLens = new Pose2d(new Translation2d(-1.293, 2.556), Rotation2d.fromDegrees(0.0));
         kLimelightConstants.kHorizontalPlaneToLens = Rotation2d.fromDegrees(-24.0);
-    }
+    } */
 
     public static final double kMaxTopLimelightHeight = 16.0;
 
