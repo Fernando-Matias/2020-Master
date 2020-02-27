@@ -35,9 +35,9 @@ public class Popup extends SubsystemBase {
   public TalonSRX pulleyTopMotor, pulleyBottomMotor;
   
   public Popup() {
-/*     popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.pPopupUp_ID);
+    popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.pPopupUp_ID);
     popupDown = new Solenoid(RobotMap.PCM_B, RobotMap.pPopupDown_ID);
- */
+
     pulleyTopMotor.configFactoryDefault();
     pulleyTopMotor.setNeutralMode(NeutralMode.Brake);
     pulleyTopMotor.configContinuousCurrentLimit(40);
@@ -73,7 +73,7 @@ public class Popup extends SubsystemBase {
     Constants.pulleyMotorTopState = Constants.pulleyMotorTopStateStill;
   }
 
-  /* public void PopUp() {
+  public void PopUp() {
     popupUp.set(Constants.On);
     popupDown.set(Constants.Off);
     Constants.popupState = Constants.popupStateUp;
@@ -83,7 +83,7 @@ public class Popup extends SubsystemBase {
     popupUp.set(Constants.Off);
     popupDown.set(Constants.On);
     Constants.popupState = Constants.popupStateDown;
-  } */
+  }
 
   @Override
   public void periodic() {

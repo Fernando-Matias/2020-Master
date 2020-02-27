@@ -7,19 +7,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FalconShooter;
-import frc.robot.Constants;
+import frc.robot.subsystems.Intake;
 
-public class ShootPowerCell extends CommandBase {
+public class StopIntake extends CommandBase {
   /**
-   * Creates a new ShootPowerCell.
+   * Creates a new StopIntake.
    */
 
-  FalconShooter falconShooter = FalconShooter.getInstance();
+  Intake intake = Intake.getInstance();
 
-  public ShootPowerCell() {
+  public StopIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -31,17 +29,7 @@ public class ShootPowerCell extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
- /*     if (Constants.RampingState == Constants.RampingnotReset) { */
-      falconShooter.RampingSequence();
-      Timer.delay(.5);
-      falconShooter.ShootPowerCell();
-/*       Constants.RampingState = Constants.RampingReset;
-    }
-    else {
-
-    } */
-
-    
+    intake.StopIntakePowerCell();
   }
 
   // Called once the command ends or is interrupted.

@@ -12,7 +12,6 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.SerialPort;
 
 import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
@@ -33,7 +32,7 @@ import frc.robot.subsystems.DriveTrain;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public AHRS ahrs;
-  OI oi = new OI();
+
   //Limelight limelight = Limelight.getInstance();
   DriveTrain driveTrain = DriveTrain.getInstance();
 
@@ -126,13 +125,12 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     if (Constants.DriverOrientation == Constants.FrontOrientation) {
-    drivetrain.curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
-    Scheduler.getInstance().run();
+      driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
+
     }
 
     else if (Constants.DriverOrientation == Constants.BackOrientation) {
-    drivetrain.curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
-    Scheduler.getInstance().run();
+      driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
     }
   }
 

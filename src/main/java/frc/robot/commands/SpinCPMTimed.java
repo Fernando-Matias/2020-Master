@@ -9,17 +9,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FalconShooter;
-import frc.robot.Constants;
+import frc.robot.subsystems.ControlPanelManipulator;
 
-public class ShootPowerCell extends CommandBase {
+public class SpinCPMTimed extends CommandBase {
   /**
-   * Creates a new ShootPowerCell.
+   * Creates a new SpinCPMTimed.
    */
-
-  FalconShooter falconShooter = FalconShooter.getInstance();
-
-  public ShootPowerCell() {
+  ControlPanelManipulator cpm = ControlPanelManipulator.GetInstance();
+  public SpinCPMTimed() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -31,17 +28,8 @@ public class ShootPowerCell extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
- /*     if (Constants.RampingState == Constants.RampingnotReset) { */
-      falconShooter.RampingSequence();
-      Timer.delay(.5);
-      falconShooter.ShootPowerCell();
-/*       Constants.RampingState = Constants.RampingReset;
-    }
-    else {
-
-    } */
-
-    
+  cpm.SpinControlPanel();
+  Timer.delay(1);
   }
 
   // Called once the command ends or is interrupted.
@@ -52,6 +40,7 @@ public class ShootPowerCell extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    cpm.StopSpinControlPanel();
+    return true;
   }
 }

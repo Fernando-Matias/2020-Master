@@ -18,7 +18,7 @@ public class OI {
     private static final LogitechAttack3Joystick RightStick = new LogitechAttack3Joystick(RobotMap.mRightStickPort);
     private static final LogitechController Gamepad = new LogitechController(RobotMap.mGamepadPort);
 
-    public void registerControls(){
+    public static void registerControls(){
       Gamepad.getButtonA().whenPressed(new SpinPort8());
       Gamepad.getButtonB().whenPressed(new Rotateto90());
       Gamepad.getButtonY().whenPressed(new Rotateto180());
