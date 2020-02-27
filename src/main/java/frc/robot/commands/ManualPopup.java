@@ -8,11 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Popup;
+import frc.robot.Constants;
 
 public class ManualPopup extends CommandBase {
   /**
    * Creates a new ManualPopup.
    */
+  Popup popup = Popup.getInstance();
   public ManualPopup() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -25,6 +28,14 @@ public class ManualPopup extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (Constants.popupState == Constants.popupStateDown) {
+      popup.PopUp();
+      Constants.popupState = Constants.popupStateUp;
+    }
+    else if (Constants.popupState == Constants.popupStateUp) {
+      popup.PopDown();
+      Constants.popupState = Constants.popupStateDown;
+    }
   }
 
   // Called once the command ends or is interrupted.

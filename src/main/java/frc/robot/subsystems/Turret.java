@@ -11,14 +11,16 @@ import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Servo;
+import frc.robot.Input.LogitechController;
 
 public class Turret extends SubsystemBase {
 
   //calling limelight Class
   //Limelight limelight = Limelight.getInstance();
-  
   //creating Turret Class
+  private static final LogitechController Gamepad = new LogitechController(RobotMap.mGamepadPort);
   private static final Turret instance = new Turret();
+  
 
   public static Turret GetInstance() {
     return instance;
@@ -41,22 +43,23 @@ public class Turret extends SubsystemBase {
     TurretServo.set(1.0);
   }
 
-/*   // deadband
-  if (m_Stick.getRawAxis(1) >= -0.25 && m_Stick.getRawAxis(1) <= 0.25 ){
+public void manualTurret() {
+ // deadband
+  if ( Gamepad.getRightXAxis()  >= -0.25 && Gamepad.getRightXAxis() <= 0.25 ){
       TurretServo.set(0.5);
   }
-  else if (m_Stick.getRawAxis(1) > 0.25 ){
+  else if (Gamepad.getRightXAxis() > 0.25 ){
     TurretServo.set(1.0);
   }
-  else if (m_Stick.getRawAxis(1) < -0.25){
+  else if (Gamepad.getRightXAxis() < -0.25){
     TurretServo.set(0.0);
-  } */
-  
-
-  
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
   }
 }
+
+  
+
+ // @Override
+  //public void periodic() {
+    // This method will be called once per scheduler run
+  }
+

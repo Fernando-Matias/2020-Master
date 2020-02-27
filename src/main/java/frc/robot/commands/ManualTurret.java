@@ -8,16 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Turret;
 
-public class StopIntake extends CommandBase {
+public class ManualTurret extends CommandBase {
   /**
-   * Creates a new StopIntake.
+   * Creates a new ManualTurret.
    */
+  Turret turret = Turret.GetInstance();
 
-  Intake intake = Intake.getInstance();
-
-  public StopIntake() {
+  public ManualTurret() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -29,7 +28,8 @@ public class StopIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.StopIntakePowerCell();
+    if (TurretAuto state)
+    turret.manualTurret();
   }
 
   // Called once the command ends or is interrupted.
