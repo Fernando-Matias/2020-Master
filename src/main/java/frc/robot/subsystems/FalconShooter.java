@@ -36,11 +36,21 @@ public class FalconShooter extends SubsystemBase {
 
   public void RampingSequence(){
     timer.start();
-    for (double i = 0; i <= 0.5; i = i + 0.1){
+    for (double i = 0; i <= 0.4; i = i + 0.1){
       SmartDashboard.putNumber("ramping", i);
       falconShooter.set(ControlMode.PercentOutput, i);
       Timer.delay(1);
+      }
+    timer.stop();
+    timer.reset();
     }
+
+  public void ShootPowerCell() {
+    falconShooter.set(ControlMode.PercentOutput, 0.4);
+  }
+
+  public void StopShootingCells() {
+    falconShooter.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

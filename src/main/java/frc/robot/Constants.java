@@ -58,10 +58,15 @@ public final class Constants {
     public static final int cpmStateExtended = 1;
     public static int cpmState = cpmStateExtended;
 
-    //Control pannel manipulator 
+    //NavX State
     public static final int NavxResete = 0;
     public static final int Navxold = 1;
     public static int NavxState = Navxold;
+
+    //Ramping Shooter State
+    public static final int RampingReset = 0;
+    public static final int RampingnotReset = 1;
+    public static int RampingState = RampingnotReset;
 
     //Timeout for Encoders
     public static final int kTimeoutms = 10;

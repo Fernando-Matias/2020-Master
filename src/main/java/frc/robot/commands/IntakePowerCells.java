@@ -8,28 +8,27 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ControlPanelManipulator;
+import frc.robot.subsystems.Intake;;
 
-public class SpinPort8 extends CommandBase {
+public class IntakePowerCells extends CommandBase {
   /**
-   * Creates a new SpinPort8.
+   * Creates a new IntakeBalls.
    */
-  ControlPanelManipulator controlPanelManipulator = ControlPanelManipulator.GetInstance();
+  Intake intake = Intake.getInstance();
 
-  public SpinPort8() {
+  public IntakePowerCells() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    controlPanelManipulator.SpinControlPanel();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    intake.IntakePowerCell();
   }
 
   // Called once the command ends or is interrupted.

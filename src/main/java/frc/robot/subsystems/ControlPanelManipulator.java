@@ -50,12 +50,7 @@ public class ControlPanelManipulator extends SubsystemBase {
 //Manipulator Control
    public void SpinControlPanel() {
 
-    timer.start();
-    for (double i = 0; i <= 0.5; i = i + 0.1){
-      SmartDashboard.putNumber("ramping", i);
-      CPManipulatorMotor.set(ControlMode.PercentOutput, i);
-      Timer.delay(1);
-    }
+    CPManipulatorMotor.set(ControlMode.PercentOutput, 1.0);
 
   }
   public void StopSpinControlPanel() {
