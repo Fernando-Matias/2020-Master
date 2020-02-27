@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
 
 
 public class Limelight extends SubsystemBase {
@@ -84,7 +85,7 @@ public class Limelight extends SubsystemBase {
   }
 
   @Override
-  public synchronized void readPeriodicInputs() {
+  public synchronized void readPeriodicOutputs() {
       mPeriodicIO.latency = mNetworkTable.getEntry("tl").getDouble(0) / 1000.0 + Constants.kImageCaptureLatency;
       mPeriodicIO.givenLedMode = (int) mNetworkTable.getEntry("ledMode").getDouble(1.0);
       mPeriodicIO.givenPipeline = (int) mNetworkTable.getEntry("pipeline").getDouble(0);
