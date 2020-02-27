@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
   NetworkTableEntry tx;
   NetworkTableEntry ty;
   NetworkTableEntry ta;
+  NetworkTableEntry tv;
   NetworkTableEntry ts;
   NetworkTableEntry pipeline;
   NetworkTableEntry ledMode;
@@ -36,6 +37,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
     tx = table.getEntry("tx");
     ty = table.getEntry("ty");
     ta = table.getEntry("ta");
+    tv = table.getEntry("tv");
     ts = table.getEntry("ts");
     pipeline = table.getEntry("pipeline");
     camMode = table.getEntry("camMode");
@@ -44,6 +46,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
     pipeline.setValue(1);
     camMode.setValue(1);
 
+  }
+
+  public double getLimelightTarget(){
+    double v = tv.getDouble(0.0);
+    return v;
   }
 
   public double getXOffsetFromTarget() {
@@ -78,6 +85,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
     SmartDashboard.putNumber("Limelight X", getXOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Y", getYOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Area", getTargetArea());
+    SmartDashboard.putNumber("ValidTarget", getLimelightTarget());
   }
   
   @Override

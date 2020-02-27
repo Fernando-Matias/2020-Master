@@ -9,10 +9,17 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Turret;
+
 public class Target extends CommandBase {
   /**
    * Creates a new Target.
    */
+
+  Limelight limelight = Limelight.getInstance();
+  Turret turret = Turret.GetInstance();
+
   public Target() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -25,6 +32,13 @@ public class Target extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0){
+       turret.turretLeftTurn();
+    }
+    if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() < 1.0){
+      turret.turretRightTurn();
+    }
+
   }
 
   // Called once the command ends or is interrupted.
