@@ -12,13 +12,13 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.SerialPort;
+
+import frc.robot.Input.*;
 
 import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.Constants;
-import frc.robot.subsystems.Turret;
-//import frc.robot.subsystems.Limelight;
-
+import frc.robot.subsystems.Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -35,9 +35,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public AHRS ahrs;
 
-  //Limelight limelight = Limelight.getInstance();
+  Limelight limelight = Limelight.getInstance();
   DriveTrain driveTrain = DriveTrain.getInstance();
-  Turret turret = Turret.getInstance();
 
   //private RobotContainer m_robotContainer;
 
@@ -51,9 +50,12 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
 
     //m_robotContainer = new RobotContainer();
+    OI OI = new OI();
 
     OI.registerControls();
     
+    
+
 
 
   }
@@ -73,7 +75,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     
     CommandScheduler.getInstance().run();
-    //limelight.LimelightOutput();
+    limelight.LimelightOutput();
     driveTrain.NavXOutput();
     
     
@@ -119,7 +121,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-
   }
 
   /**
@@ -127,23 +128,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    // Driver Orientation
-    if (Constants.DriverOrientation == Constants.FrontOrientation) {
-      driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
 
-    }
-    else if (Constants.DriverOrientation == Constants.BackOrientation) {
-      driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
-    }
 
-    // Turret Control
-    if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
-      turret.UseManualInput();
-    }
-
-    else if (Constants.TurretAimState == Constants.TurretAimStateManual) {
-      
-    }
   }
 
   @Override
