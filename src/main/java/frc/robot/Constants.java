@@ -82,6 +82,14 @@ public final class Constants {
     public static final int kTimeoutms = 10;
 
     //controls 
+    public static final int leftSideGood = 0;
+    public static final int leftSideBad = 1;
+    public static final int leftSide = leftSideBad;
+
+    public static final int rightSideGood = 0;
+    public static final int rightSideBad = 1;
+    public static final int rightSide = rightSideBad;
+
     public static final int pulleyMotorStateSpinning = 0;
     public static final int pulleyMotorStateStill = 1;
     public static int pulleyMotorState = pulleyMotorStateStill;
