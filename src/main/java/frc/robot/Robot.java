@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.Constants;
+import frc.robot.subsystems.Turret;
 //import frc.robot.subsystems.Limelight;
 
 
@@ -35,6 +37,7 @@ public class Robot extends TimedRobot {
 
   //Limelight limelight = Limelight.getInstance();
   DriveTrain driveTrain = DriveTrain.getInstance();
+  Turret turret = Turret.getInstance();
 
   //private RobotContainer m_robotContainer;
 
@@ -128,9 +131,16 @@ public class Robot extends TimedRobot {
       driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
 
     }
-
     else if (Constants.DriverOrientation == Constants.BackOrientation) {
       driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
+    }
+
+    if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
+      turret.UseManualInput();
+    }
+
+    else if (Constants.TurretAimState == Constants.TurretAimStateManual) {
+
     }
   }
 

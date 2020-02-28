@@ -29,6 +29,11 @@ public class Turret extends SubsystemBase {
   //declaring servo name
   public Servo TurretServo;
   
+  public static Turret getInstance(){
+    return instance;
+  }
+
+
   public Turret(){
     TurretServo = new Servo(RobotMap.mTurretServo_ID);
   } 
@@ -43,17 +48,19 @@ public class Turret extends SubsystemBase {
     TurretServo.set(1.0);
   }
 
-public void manualTurret() {
- // deadband
-  if ( Gamepad.getRightXAxis()  >= -0.25 && Gamepad.getRightXAxis() <= 0.25 ){
+  public void UseManualInput() {
+    if ( Gamepad.getRightXAxis()  >= -0.25 && Gamepad.getRightXAxis() <= 0.25 ){
       TurretServo.set(0.5);
-  }
-  else if (Gamepad.getRightXAxis() > 0.25 ){
+     }
+    else if (Gamepad.getRightXAxis() > 0.25 ){
     TurretServo.set(1.0);
-  }
-  else if (Gamepad.getRightXAxis() < -0.25){
+     }
+    else if (Gamepad.getRightXAxis() < -0.25){
     TurretServo.set(0.0);
+    }
   }
+ // deadband
+
 }
 
   
@@ -61,5 +68,5 @@ public void manualTurret() {
  // @Override
   //public void periodic() {
     // This method will be called once per scheduler run
-  }
+  //}
 

@@ -73,6 +73,11 @@ public final class Constants {
     public static final int BackOrientation = 1;
     public static int DriverOrientation = FrontOrientation;
 
+    //Manual or Auto Aiming State 
+    public static final int TurretAimStateManual = 0;
+    public static final int TurretAimStateAuto = 1;
+    public static int TurretAimState = TurretAimStateAuto;
+
     //Timeout for Encoders
     public static final int kTimeoutms = 10;
 
