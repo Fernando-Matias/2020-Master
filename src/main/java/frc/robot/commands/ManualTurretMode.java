@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Turret;
 
-public class ManualTurret extends CommandBase {
+public class ManualTurretMode extends CommandBase {
   /**
    * Creates a new ManualTurret.
    */
   Turret turret = Turret.GetInstance();
 
-  public ManualTurret() {
+  public ManualTurretMode() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

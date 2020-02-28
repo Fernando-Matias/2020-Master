@@ -140,7 +140,7 @@ public class Robot extends TimedRobot {
     }
 
     else if (Constants.TurretAimState == Constants.TurretAimStateManual) {
-
+      
     }
   }
 
