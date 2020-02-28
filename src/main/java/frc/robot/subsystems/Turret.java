@@ -66,8 +66,7 @@ public class Turret extends SubsystemBase {
     else if (Gamepad.getRightYAxis() < 0) {
       HoodServo.set(0.0);
     }
-    }
-  
+    }  
 
   }
  // deadband

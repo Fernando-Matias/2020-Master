@@ -127,6 +127,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    // Driver Orientation
     if (Constants.DriverOrientation == Constants.FrontOrientation) {
       driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
 
@@ -135,6 +136,7 @@ public class Robot extends TimedRobot {
       driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
     }
 
+    // Turret Control
     if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
       turret.UseManualInput();
     }

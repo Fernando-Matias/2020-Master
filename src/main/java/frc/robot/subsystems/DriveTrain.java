@@ -98,7 +98,7 @@ public static DifferentialDrive mDrive;
 
 
 
-/*   public void UpShift() {
+   public void UpShift() {
   mShifter_High.set(Constants.On);
    mShifter_Low.set(Constants.Off);
    Constants.currentGear = Constants.highGear;
@@ -108,7 +108,7 @@ public static DifferentialDrive mDrive;
     mShifter_High.set(Constants.Off);
     mShifter_Low.set(Constants.On);
     Constants.currentGear = Constants.lowGear;
-  } */
+  } 
   
   public double GetLeftEncoderValue() {
     return mDriveLeftMaster.getSelectedSensorPosition(0);

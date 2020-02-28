@@ -54,7 +54,7 @@ public class Intake extends SubsystemBase {
   public void StopIntakePowerCell() {
     intakeMotor.set(ControlMode.PercentOutput, 0.0);
   }
- /*  public void ExtendIntake() {
+   public void ExtendIntake() {
     intakeExtend.set(Constants.On);
     intakeRetract.set(Constants.Off);
     Constants.intakeState = Constants.intakeStateExtended;
@@ -63,7 +63,7 @@ public class Intake extends SubsystemBase {
     intakeExtend.set(Constants.Off);
     intakeRetract.set(Constants.On);
     Constants.intakeState = Constants.intakeStateRetracted;
-  } */
+  } 
 
   @Override
   public void periodic() {

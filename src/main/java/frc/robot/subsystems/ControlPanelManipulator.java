@@ -58,7 +58,7 @@ public class ControlPanelManipulator extends SubsystemBase {
   }
 
 //Pneumatics Control
-/*   public void PushUpManipulator() {
+   public void PushUpManipulator() {
     CPManipulatorRetract.set(Constants.On);
     CPManipulatorExtend.set(Constants.Off);
     Constants.cpmState = Constants.cpmStateRetracted;
@@ -67,7 +67,7 @@ public class ControlPanelManipulator extends SubsystemBase {
     CPManipulatorRetract.set(Constants.Off);
     CPManipulatorExtend.set(Constants.On);
     Constants.cpmState = Constants.cpmStateExtended;
-  } */
+  } 
 
   @Override
   public void periodic() {

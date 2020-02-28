@@ -23,7 +23,7 @@ public class OI {
       Gamepad.getButtonB().whenPressed(new StopShootPowerCell());
       Gamepad.getButtonY().whenPressed(new ShootPowerCell());
       Gamepad.getButtonX().whenPressed(new ResetGyro());
-    //Gamepad.getButtonStart().whenPressed(new ResetGyro());
+      Gamepad.getButtonStart().whenPressed(new ResetGyro());
     }
 
     public static double getLeftThrottleInput() {
