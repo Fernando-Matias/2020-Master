@@ -29,7 +29,7 @@ public class RobotMap {
 
     //Servo IDS
     public static final int mTurretServo_ID = 0;
-  
+    public static final int mHoodServo_ID = 1;
     //Controls
     public static final int mLeftStickPort = 0;
     public static final int mRightStickPort = 1;

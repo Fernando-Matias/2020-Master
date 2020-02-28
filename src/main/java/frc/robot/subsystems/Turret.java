@@ -28,6 +28,7 @@ public class Turret extends SubsystemBase {
 
   //declaring servo name
   public Servo TurretServo;
+  public Servo HoodServo;
   
   public static Turret getInstance(){
     return instance;
@@ -36,6 +37,7 @@ public class Turret extends SubsystemBase {
 
   public Turret(){
     TurretServo = new Servo(RobotMap.mTurretServo_ID);
+    HoodServo = new Servo(RobotMap.mHoodServo_ID);
   } 
 
   public void turretRightTurn(){
@@ -57,7 +59,16 @@ public class Turret extends SubsystemBase {
      }
     else if (Gamepad.getRightXAxis() < -0.25){
     TurretServo.set(0.0);
+
+    if (Gamepad.getRightYAxis() > 0) {
+      HoodServo.set(1.0);
     }
+    else if (Gamepad.getRightYAxis() < 0) {
+      HoodServo.set(0.0);
+    }
+    }
+  
+
   }
  // deadband
 
