@@ -13,10 +13,13 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.SerialPort;
 
 import frc.robot.Input.*;
 import frc.robot.Constants;
+=======
+>>>>>>> parent of b9ad37e... jes
 =======
 >>>>>>> parent of b9ad37e... jes
 
@@ -142,12 +145,21 @@ public class Robot extends TimedRobot {
     else if (Constants.DriverOrientation == Constants.BackOrientation) {
       driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
     }
+<<<<<<< HEAD
 
     // Turret Control
     if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
       turret.UseManualInput();
     }
 
+=======
+
+    // Turret Control
+    if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
+      turret.UseManualInput();
+    }
+
+>>>>>>> parent of b9ad37e... jes
     else if (Constants.TurretAimState == Constants.TurretAimStateManual) {
       
     }
