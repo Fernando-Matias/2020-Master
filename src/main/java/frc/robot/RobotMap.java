@@ -22,7 +22,7 @@ public class RobotMap {
     public static final int mDriveRightB_ID = 6;
 
     //Shooter Neo
-    public static final int mNeoShooter_ID = 9;
+    public static final int mNeoShooter_ID = 22;
 
     //falcon Shooter ID
     public static final int mFalconShooter_ID = 12;
@@ -30,6 +30,7 @@ public class RobotMap {
     //Servo IDS
     public static final int mTurretServo_ID = 0;
     public static final int mHoodServo_ID = 1;
+
     //Controls
     public static final int mLeftStickPort = 0;
     public static final int mRightStickPort = 1;
@@ -40,7 +41,7 @@ public class RobotMap {
     public static final int PCM_B = 2;
 
     //Intake Motor ID
-    public static final int mIntakeMotor_ID = 7;
+    public static final int mIntakeMotor_ID = 10;
 
     //Control pannel manipulator 
     public static final int mCPManipulator_ID = 8;
