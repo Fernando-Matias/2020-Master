@@ -141,11 +141,11 @@ public class Robot extends TimedRobot {
     }
 
     // Turret Control
-    if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
+    if (Constants.TurretAimState == Constants.TurretAimStateManual) {
       turret.UseManualInput();
     }
 
-    else if (Constants.TurretAimState == Constants.TurretAimStateManual) {
+    else if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
       
     }
       

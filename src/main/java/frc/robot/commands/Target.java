@@ -39,7 +39,7 @@ public class Target extends CommandBase {
       
     
 
-    if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0){
+    if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0 && Constants.TurretAimState == Constants.TurretAimStateAuto){
       turret.turretLeftTurn();
     }
     if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() < 1.0){
