@@ -12,6 +12,7 @@ import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Servo;
 import frc.robot.Input.LogitechController;
+import frc.robot.Constants;
 
 public class Turret extends SubsystemBase {
 
@@ -43,6 +44,7 @@ public class Turret extends SubsystemBase {
   public void turretRightTurn(){
     TurretServo.setSpeed(1.0);
     TurretServo.set(0.0);
+
   }
 
   public void turretLeftTurn(){

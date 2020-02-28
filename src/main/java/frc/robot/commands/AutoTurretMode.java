@@ -26,7 +26,10 @@ public class AutoTurretMode extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Constants.TurretAimState = Constants.TurretAimStateAuto;
+    if(Constants.TurretAimState == Constants.TurretAimStateManual){
+      Constants.TurretAimState = Constants.TurretAimStateAuto;
+    }
+    
   }
 
   // Called once the command ends or is interrupted.

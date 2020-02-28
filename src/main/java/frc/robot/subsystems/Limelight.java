@@ -73,6 +73,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
     return skew;
   }
 
+  public void setOn(){
+    ledMode.setNumber(0);
+  }
+
   public void blink() {
     ledMode.setNumber(2);
   }

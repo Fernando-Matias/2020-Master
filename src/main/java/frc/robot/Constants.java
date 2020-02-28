@@ -82,13 +82,17 @@ public final class Constants {
     public static final int kTimeoutms = 10;
 
     //controls 
+    public static final int trackON = 0;
+    public static final int trackOFF = 1;
+    public static int trackState = trackOFF; 
+
     public static final int leftSideGood = 0;
     public static final int leftSideBad = 1;
-    public static final int leftSide = leftSideBad;
+    public static int leftSide = leftSideBad;
 
     public static final int rightSideGood = 0;
     public static final int rightSideBad = 1;
-    public static final int rightSide = rightSideBad;
+    public static int rightSide = rightSideBad;
 
     public static final int pulleyMotorStateSpinning = 0;
     public static final int pulleyMotorStateStill = 1;

@@ -57,12 +57,10 @@ public class Intake extends SubsystemBase {
    public void ExtendIntake() {
     intakeExtend.set(Constants.On);
     intakeRetract.set(Constants.Off);
-    Constants.intakeState = Constants.intakeStateExtended;
   }
   public void RetractIntake() {
     intakeExtend.set(Constants.Off);
     intakeRetract.set(Constants.On);
-    Constants.intakeState = Constants.intakeStateRetracted;
   } 
 
   @Override

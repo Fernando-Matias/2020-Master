@@ -19,11 +19,18 @@ public class OI {
     private static final LogitechController Gamepad = new LogitechController(RobotMap.mGamepadPort);
 
     public static void registerControls(){
-      Gamepad.getButtonA().whenPressed(new SpinPort8());
-      Gamepad.getButtonB().whenPressed(new StopShootPowerCell());
-      Gamepad.getButtonY().whenPressed(new ShootPowerCell());
-      Gamepad.getButtonX().whenPressed(new ResetGyro());
-      Gamepad.getButtonStart().whenPressed(new ResetGyro());
+      LeftStick.getButton2().whenPressed(new IntakePowerCells());
+      LeftStick.getButton3().whenPressed(new TargetOff());
+      LeftStick.getButton5().whenPressed(new DriverFrontOrientation());
+      LeftStick.getButtonTrigger().whenPressed(new StopShootPowerCell());
+
+      RightStick.getButton2().whenPressed(new ManualPopup());
+      RightStick.getButton3().whenPressed(new Target());
+      RightStick.getButton5().whenPressed(new DriverBackOrientation());
+      RightStick.getButtonTrigger().whenPressed(new ShootPowerCell());
+
+      Gamepad.getButtonBack().whenPressed(new )
+
     }
 
     public static double getLeftThrottleInput() {

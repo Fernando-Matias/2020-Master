@@ -33,13 +33,22 @@ public class Target extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(Constants.trackState == Constants.trackOFF){
+      limelight.setOn();
+    }
+      
+    
+
     if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0){
       turret.turretLeftTurn();
-      Constants.leftSide = Constants.leftSideGood;
     }
     if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() < 1.0){
       turret.turretRightTurn();
+    }
+
+    if (limelight.getXOffsetFromTarget() > 1.0 && limelight.getXOffsetFromTarget() < 1.0 && limelight.getLimelightTarget() == 1){
       Constants.rightSide = Constants.rightSideGood;
+      Constants.leftSide = Constants.leftSideGood;
     }
 
   }
@@ -52,6 +61,11 @@ public class Target extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if (Constants.leftSide == Constants.leftSideGood && Constants.rightSide == Constants.rightSideGood && Constants.trackState == Constants.trackOFF){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }

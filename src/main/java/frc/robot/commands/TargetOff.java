@@ -8,16 +8,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
 import frc.robot.Constants;
+import frc.robot.subsystems.Limelight;
 
-public class IntakePowerCells extends CommandBase {
+public class TargetOff extends CommandBase {
   /**
-   * Creates a new IntakeBalls.
+   * Creates a new TargetOff.
    */
-  Intake intake = Intake.getInstance();
 
-  public IntakePowerCells() {
+  Limelight limelight = Limelight.getInstance();
+  
+  public TargetOff() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -29,15 +30,9 @@ public class IntakePowerCells extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Constants.intakeState == Constants.intakeStateRetracted){
-      intake.IntakePowerCell();
-      intake.ExtendIntake();
-      Constants.intakeState = Constants.intakeStateExtended;
-    }
-    else if (Constants.intakeState == Constants.intakeStateExtended){
-      intake.StopIntakePowerCell();
-      intake.RetractIntake();
-      Constants.intakeState = Constants.intakeStateRetracted;
+    if (Constants.trackState == Constants.trackON){
+      limelight.setOff();
+      Constants.trackState = Constants.trackOFF;
     }
   }
 
@@ -49,6 +44,6 @@ public class IntakePowerCells extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
