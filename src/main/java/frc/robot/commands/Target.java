@@ -34,11 +34,12 @@ public class Target extends CommandBase {
   @Override
   public void execute() {
     if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0){
-       turret.turretLeftTurn();
-       Constants.leftSide = Constants.leftSideGood;
+      turret.turretLeftTurn();
+      Constants.leftSide = Constants.leftSideGood;
     }
     if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() < 1.0){
       turret.turretRightTurn();
+      Constants.rightSide = Constants.rightSideGood;
     }
 
   }
