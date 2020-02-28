@@ -50,6 +50,16 @@ public class Turret extends SubsystemBase {
     TurretServo.set(1.0);
   }
 
+  public void HoodOut(){
+    HoodServo.setSpeed(1.0);
+    HoodServo.set(1.0);
+  }
+
+  public void HoodIn(){
+    HoodServo.setSpeed(1.0);
+    HoodServo.set(0.0);
+  }
+
   public void UseManualInput() {
     if ( Gamepad.getRightXAxis()  >= -0.25 && Gamepad.getRightXAxis() <= 0.25 ){
       TurretServo.set(0.5);
@@ -67,6 +77,8 @@ public class Turret extends SubsystemBase {
       HoodServo.set(0.0);
     }
     }  
+
+  
 
   }
  // deadband
