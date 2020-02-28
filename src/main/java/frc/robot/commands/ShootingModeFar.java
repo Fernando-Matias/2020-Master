@@ -8,11 +8,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.FalconShooter;
+import frc.robot.Constants;
+import edu.wpi.first.wpilibj.Timer;
 
 public class ShootingModeFar extends CommandBase {
   /**
    * Creates a new ShootingModeFar.
    */
+
+  FalconShooter falconShooter = FalconShooter.getInstance();
+
   public ShootingModeFar() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -25,7 +31,9 @@ public class ShootingModeFar extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    falconShooter.RampingSequence();
+    Timer.delay(5);
+    falconShooter.ShootPowerCell();
   }
 
   // Called once the command ends or is interrupted.
