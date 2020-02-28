@@ -33,7 +33,7 @@ public class ShootPowerCell extends CommandBase {
   public void execute() {
  /*     if (Constants.RampingState == Constants.RampingnotReset) { */
       falconShooter.RampingSequence();
-      Timer.delay(.5);
+      Timer.delay(5);
       falconShooter.ShootPowerCell();
 /*       Constants.RampingState = Constants.RampingReset;
     }

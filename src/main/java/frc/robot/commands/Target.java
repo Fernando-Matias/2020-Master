@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Turret;
+import frc.robot.Constants;
 
 public class Target extends CommandBase {
   /**
@@ -34,6 +35,7 @@ public class Target extends CommandBase {
   public void execute() {
     if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0){
        turret.turretLeftTurn();
+       Constants.leftSide = Constants.leftSideGood;
     }
     if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() < 1.0){
       turret.turretRightTurn();
