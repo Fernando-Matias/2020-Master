@@ -29,7 +29,8 @@ public class OI {
       RightStick.getButton5().whenPressed(new DriverBackOrientation());
       RightStick.getButtonTrigger().whenPressed(new ShootPowerCell());
 
-      Gamepad.getButtonBack().whenPressed(new )
+      Gamepad.getButtonBack().whenPressed(new AutoTurretMode());
+      Gamepad.getButtonStart().whenPressed(new ManualTurretMode());
 
     }
 
