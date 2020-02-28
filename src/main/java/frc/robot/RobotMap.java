@@ -27,6 +27,9 @@ public class RobotMap {
     //falcon Shooter ID
     public static final int mFalconShooter_ID = 12;
 
+    //Climber Motor ID
+    public static final int mClimberMotor_ID = 19;
+
     //Servo IDS
     public static final int mTurretServo_ID = 0;
     public static final int mHoodServo_ID = 1;
@@ -65,6 +68,7 @@ public class RobotMap {
     //Control pannal manipulator
     public static final int pCPManipulatorExtend_ID = 4;
     public static final int PCPManipulatorRetract_ID = 4;
+
     
 
 
