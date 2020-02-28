@@ -7,21 +7,19 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
-import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Popup;
 import frc.robot.subsystems.Turret;
-import frc.robot.Constants;
 
-public class Target extends CommandBase {
+public class ShootingModeNear extends CommandBase {
   /**
-   * Creates a new Target.
+   * Creates a new ShootingModeNear.
    */
+  Popup popup = Popup.getInstance();
+  Turret turret = Turret.getInstance();
 
-  Limelight limelight = Limelight.getInstance();
-  Turret turret = Turret.GetInstance();
-
-  public Target() {
+  public ShootingModeNear() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -33,24 +31,9 @@ public class Target extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Constants.trackState == Constants.trackOFF){
-      limelight.setOn();
-    }
-      
-    
-
-    if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0 && Constants.TurretAimState == Constants.TurretAimStateAuto){
-      turret.turretLeftTurn();
-    }
-    if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() < 1.0){
-      turret.turretRightTurn();
-    }
-
-    if (limelight.getXOffsetFromTarget() > 1.0 && limelight.getXOffsetFromTarget() < 1.0 && limelight.getLimelightTarget() == 1){
-      Constants.rightSide = Constants.rightSideGood;
-      Constants.leftSide = Constants.leftSideGood;
-    }
-
+    popup.PopDown();
+    turret.HoodOut();
+    Timer.delay(1);
   }
 
   // Called once the command ends or is interrupted.
@@ -61,11 +44,6 @@ public class Target extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Constants.leftSide == Constants.leftSideGood && Constants.rightSide == Constants.rightSideGood && Constants.trackState == Constants.trackOFF){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return true;
   }
 }

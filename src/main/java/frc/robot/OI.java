@@ -31,6 +31,8 @@ public class OI {
 
       Gamepad.getButtonBack().whenPressed(new AutoTurretMode());
       Gamepad.getButtonStart().whenPressed(new ManualTurretMode());
+      Gamepad.getButtonY().whenHeld(new ClimberGoUp());
+      Gamepad.getButtonB().whenHeld(new ClimberGoDown());
 
     }
 
