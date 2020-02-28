@@ -8,16 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
 
-public class Rotateto90 extends CommandBase {
+public class AutoTurretMode extends CommandBase {
   /**
-   * Creates a new Rotateto90.
+   * Creates a new AutoTurretMode.
    */
-
-  DriveTrain driveTrain = DriveTrain.getInstance();
-
-  public Rotateto90() {
+  public AutoTurretMode() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -29,7 +25,6 @@ public class Rotateto90 extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.NavX90deg();
   }
 
   // Called once the command ends or is interrupted.
