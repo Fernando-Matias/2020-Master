@@ -12,14 +12,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Popup;
 import frc.robot.subsystems.Turret;
 
-public class ShootingModeFar extends CommandBase {
+public class ShootingModeNear extends CommandBase {
   /**
-   * Creates a new ShootingModeFar.
+   * Creates a new ShootingModeNear.
    */
   Popup popup = Popup.getInstance();
   Turret turret = Turret.getInstance();
 
-  public ShootingModeFar() {
+  public ShootingModeNear() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -31,7 +31,7 @@ public class ShootingModeFar extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    popup.PopUp();
+    popup.PopDown();
     turret.HoodOut();
     Timer.delay(1);
   }
