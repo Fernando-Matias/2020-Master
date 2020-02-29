@@ -189,7 +189,7 @@ public class DriveTrain extends SubsystemBase {
   public void Curvature(double ThrottleAxis, double TurnAxis) {
     TurnRateCurved = (Constants.kTurnrateCurve*Math.pow(TurnAxis,3)+(1-Constants.kTurnrateCurve)*TurnAxis*Constants.kTurnrateLimit);
     AccelRateCurved = (Constants.kAccelRateCurve*Math.pow(ThrottleAxis,3)+(1-Constants.kAccelRateCurve)*ThrottleAxis*Constants.kAccelRateLimit);
-    mDrive.curvatureDrive(AccelRateCurved, TurnRateCurved, true);
+    mDrive.curvatureDrive(ThrottleAxis, TurnRateCurved, true);
   }
   
   @Override
