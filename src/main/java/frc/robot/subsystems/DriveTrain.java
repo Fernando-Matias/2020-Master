@@ -262,6 +262,87 @@ public class DriveTrain extends SubsystemBase {
       return inches_per_second * Constants.kRatioFactor;
     }
 
+    // 		/* Set acceleration and vcruise velocity for motion magic - see documentation */
+		// _talon.configMotionCruiseVelocity(15000, Constants.kTimeoutMs);
+    // _talon.configMotionAcceleration(6000, Constants.kTimeoutMs);
+    
+//     		/* Configure Sensor Source for Pirmary PID */
+// 		_talon.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx,
+//     Constants.kTimeoutMs);
+
+// /* set deadband to super small 0.001 (0.1 %).
+//   The default deadband is 0.04 (4 %) */
+// _talon.configNeutralDeadband(0.001, Constants.kTimeoutMs);
+
+		// /* Configure Sensor Source for Pirmary PID */
+		// _talon.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx,
+		// 		Constants.kTimeoutMs);
+
+    	/**
+	 * Decide if positive motor-output/sensor-velocity should be when motor spins
+	 * clockwise or counter-clockwise.
+	 */
+  //final TalonFXInvertType kInvertType = TalonFXInvertType.CounterClockwise; // <<< What direction you want "forward/up" to be.
+  
+  	/** electic brake during neutral */
+  //final NeutralMode kBrakeDurNeutral = NeutralMode.Coast;
+  
+  		/* get the selected sensor for PID0 */
+      // double appliedMotorOutput = _talon.getMotorOutputPercent();
+      // int selSenPos = _talon.getSelectedSensorPosition(0); /* position units */
+      // int selSenVel = _talon.getSelectedSensorVelocity(0); /* position units per 100ms */
+  
+      // /* scaling depending on what user wants */
+      // double pos_Rotations = (double) selSenPos / kUnitsPerRevolution;
+      // double vel_RotPerSec = (double) selSenVel / kUnitsPerRevolution * 10; /* scale per100ms to perSecond */
+      // double vel_RotPerMin = vel_RotPerSec * 60.0;
+  
+
+    //differentail drive
+    // double leftVelUnitsPer100ms = _leftFront.getSelectedSensorVelocity(0);
+    // double rghtVelUnitsPer100ms = _rghtFront.getSelectedSensorVelocity(0);
+
+    
+        // /*
+        //  * drive motor at least 25%, Talons will auto-detect if sensor is out of phase
+        //  */
+        // _leftFront.getFaults(_faults_L);
+        // _rghtFront.getFaults(_faults_R);
+
+        // if (_faults_L.SensorOutOfPhase) {
+        //     work += " L sensor is out of phase";
+        // }
+        // if (_faults_R.SensorOutOfPhase) {
+        //     work += " R sensor is out of phase";
+        // }
+
+        // /* print to console if btn1 is held down */
+        // if (btn1) {
+        //     System.out.println(work);
+        // }
+
+        // _rghtFront.configFactoryDefault();
+        // _rghtFollower.configFactoryDefault();
+        // _leftFront.configFactoryDefault();
+        // _leftFollower.configFactoryDefault();
+
+
+    /* [3] flip values so robot moves forward when stick-forward/LEDs-green */
+    //_rghtFront.setInverted(TalonFXInvertType.Clockwise); // !< Update this
+    //_leftFront.setInverted(TalonFXInvertType.CounterClockwise); // !< Update this
+
+        /* get gamepad stick values */
+        // double forw = -1 * _joystick.getRawAxis(1); /* positive is forward */
+        // double turn = +1 * _joystick.getRawAxis(2); /* positive is right */
+        // boolean btn1 = _joystick.getRawButton(1); /* is button is down, print joystick values */
+          //   /* deadband gamepad 10% */
+          //   if (Math.abs(forw) < 0.10) {
+          //     forw = 0;
+          // }
+          // if (Math.abs(turn) < 0.10) {
+          //     turn = 0;
+          // }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

@@ -37,11 +37,8 @@ public class DriverFrontOrientation extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Constants.DriverOrientation == Constants.FrontOrientation) {
-      return true;
-    }
-    else {
-    return false;
-    }
+
+    return true;
+    
   }
 }

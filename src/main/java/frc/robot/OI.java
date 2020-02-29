@@ -22,7 +22,7 @@ public class OI {
 
       //LeftStick.getButton2().whenPressed(new IntakePowerCells());
       //LeftStick.getButton3().whenPressed(new TargetOff());
-      //LeftStick.getButton5().whenPressed(new DriverFrontOrientation());
+      LeftStick.getButton5().whenPressed(new DriverFrontOrientation());
       //LeftStick.getButton4().whenHeld(new BottomPulley());
       RightStick.getButtonTrigger().whenPressed(new TopPulley());
       RightStick.getButtonTrigger().whenInactive(new StopTopPulley());
@@ -31,7 +31,7 @@ public class OI {
       RightStick.getButton2().whenPressed(new ManualPopup());
       //RightStick.getButton3().whenPressed(new Target());
       //RightStick.getButton4().whenHeld(new TopPulley());
-      //RightStick.getButton5().whenPressed(new DriverBackOrientation());
+      RightStick.getButton5().whenPressed(new DriverBackOrientation());
       LeftStick.getButtonTrigger().whenPressed(new ShootPowerCell());
       LeftStick.getButtonTrigger().whenInactive(new StopShootPowerCell());
 
