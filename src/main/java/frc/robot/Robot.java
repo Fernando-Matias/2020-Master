@@ -28,7 +28,7 @@ import frc.robot.subsystems.Popup;
 
 import frc.robot.Auto.AutoCommands.*;
 import frc.robot.Auto.AutoPaths;
-
+import frc.robot.Auto.BasicAuto;
 import frc.robot.subsystems.Turret;
 //import frc.robot.subsystems.Limelight;
 
@@ -83,6 +83,7 @@ public class Robot extends TimedRobot {
 
     autoProgram.setDefaultOption("PathA", new PathFollower(paths.getFirstPath()));
     autoProgram.setDefaultOption("PathB", new PathFollower(paths.getSecondPath()));
+    autoProgram.setDefaultOption("basic", new BasicAuto());
 
     SmartDashboard.putData("Selected Auto", autoProgram);
 
@@ -128,6 +129,8 @@ public class Robot extends TimedRobot {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
+    autonomousCommand = autoProgram.getSelected();
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }

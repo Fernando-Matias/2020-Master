@@ -105,14 +105,14 @@ public class DriveTrain extends SubsystemBase {
   //NavX AHRS
   ahrs = new AHRS(SerialPort.Port.kMXP);
 
- /*  //PIDTurn
+  //PIDTurn
   PIDController PIDTurn = new PIDController(Constants.kTurn_P, Constants.kTurn_I, Constants.kTurn_D);
 
   PIDTurn.enableContinuousInput( -180.0 , 180.0);
   MathUtil.clamp(PIDTurn.calculate(mDriveLeftMaster.getSelectedSensorPosition()), -0.65, 0.65);
   MathUtil.clamp(PIDTurn.calculate(mDriveRightMaster.getSelectedSensorPosition()), -0.65, 0.65);
   PIDTurn.setTolerance(Constants.kToleranceDegrees);
-  */
+  
 
     //PID setting
     velocityHeadingPid_ = new SynchronousPID(Constants.kDriveHeadingVelocityKp, Constants.kDriveHeadingVelocityKi, Constants.kDriveHeadingVelocityKd);
@@ -184,6 +184,18 @@ public class DriveTrain extends SubsystemBase {
 
   public void NavX0deg() {
     PIDTurn.setSetpoint(0.0);
+  }
+
+  public void NavX40deg(){
+    if (getYaw() < 40 && getYaw() > 35){
+      mDrive.arcadeDrive(0.0, 0.0);
+    }
+    else if (getYaw() > 40){
+      mDrive.arcadeDrive(0.0, 0.2);
+    }
+    else if (getYaw() < 35){
+      mDrive.arcadeDrive(0.0, 0.2);
+    }
   }
 
   public void NavX90deg() {
