@@ -24,6 +24,10 @@ import frc.robot.utility.PurePursuit.Kinematics;
 import frc.robot.RobotState;
 import edu.wpi.first.wpilibj.Timer;
 
+import frc.robot.subsystems.Popup;
+import frc.robot.subsystems.FalconShooter;
+import frc.robot.subsystems.Intake;
+
 /**
  * Add your docs here.
  */
@@ -32,6 +36,9 @@ public class AutoPaths {
     private Path PathA, PathB, PathC;
 
     private static final AutoPaths instance = new AutoPaths();
+    Popup popup = Popup.getInstance();
+    FalconShooter fShooter = FalconShooter.getInstance();
+    Intake intake = Intake.getInstance();
 
     public static AutoPaths getInstance() {
       return instance;
@@ -40,16 +47,25 @@ public class AutoPaths {
     public AutoPaths() {
 
         List<Waypoint> first_path = new ArrayList<>();
-        first_path.add(new Waypoint(new Translation2d(0, 0), 120.0));
-        first_path.add(new Waypoint(new Translation2d(-100, 0), 120.0));
-        first_path.add(new Waypoint(new Translation2d(-200, 100), 120.0));
-        first_path.add(new Waypoint(new Translation2d(-250, 100), 120.0));
+        //first_path.add(new Waypoint(new Translation2d(0, 0), 120.0));
+        first_path.add(new Waypoint(new Translation2d(0,0), 50));
+        first_path.add(new Waypoint(new Translation2d(-100, -100), 50));
+        //first_path.add(new Popup())
+        popup.PopUp();
+        // popup.UpBottomPulley();
+        // popup.UpTopPulley();
+        // fShooter.RampingSequence();
+        // fShooter.ShootPowerCell();
+
 
         PathA = new Path(first_path);
 
         List<Waypoint> second_path = new ArrayList<>();
         second_path.add(new Waypoint(new Translation2d(0, 0), 50.0));
-        second_path.add(new Waypoint(new Translation2d(-150000, 0), 50.0));
+        second_path.add(new Waypoint(new Translation2d(-150, 100), 50.0));
+        intake.ExtendIntake();
+        
+        
 
         PathB = new Path(second_path);
     }
