@@ -8,16 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.Popup;
 
-public class ManualTurretMode extends CommandBase {
+public class StopTopPulley extends CommandBase {
   /**
-   * Creates a new ManualTurret.
+   * Creates a new StopTopPulley.
    */
-  Turret turret = Turret.GetInstance();
 
-  public ManualTurretMode() {
+  Popup popup = Popup.getInstance();
+
+  public StopTopPulley() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -29,10 +29,7 @@ public class ManualTurretMode extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
-    Constants.TurretAimState = Constants.TurretAimStateManual;
-    }
-    
+    popup.StopTopPulley();
   }
 
   // Called once the command ends or is interrupted.

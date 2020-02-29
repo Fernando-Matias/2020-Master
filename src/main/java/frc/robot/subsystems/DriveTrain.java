@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -36,8 +37,8 @@ public class DriveTrain extends SubsystemBase {
 
   public static final DriveTrain instance = new DriveTrain();
 
-  public static DefaultTalonFXDrive mDriveLeftMaster, mDriveLeftB;
-  public static DefaultTalonFXDrive mDriveRightMaster, mDriveRightB;
+  public static WPI_TalonFX mDriveLeftMaster, mDriveLeftB;
+  public static WPI_TalonFX mDriveRightMaster, mDriveRightB;
   private static Solenoid mShifter_High, mShifter_Low;
 
   AHRS ahrs;
@@ -48,16 +49,18 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double TurnRateCurved;
-public static DifferentialDrive mDrive;
+  public double AccelRateCurved;
+
+  public static DifferentialDrive mDrive;
 
 
   public DriveTrain() {
   //Setting both falcons to the default fx script
-  mDriveLeftMaster = new DefaultTalonFXDrive(RobotMap.mDriveLeftA_ID);
-  mDriveLeftB = new DefaultTalonFXDrive(RobotMap.mDriveLeftA_ID);
+  mDriveLeftMaster = new WPI_TalonFX(RobotMap.mDriveLeftA_ID);
+  mDriveLeftB = new WPI_TalonFX(RobotMap.mDriveLeftB_ID);
 
-  mDriveRightMaster = new DefaultTalonFXDrive(RobotMap.mDriveRightA_ID);
-  mDriveRightB = new DefaultTalonFXDrive(RobotMap.mDriveLeftB_ID);
+  mDriveRightMaster = new WPI_TalonFX(RobotMap.mDriveRightA_ID);
+  mDriveRightB = new WPI_TalonFX(RobotMap.mDriveRightB_ID);
 
   //enabling follower mode for the other  two motors
   mDriveLeftB.set(ControlMode.Follower,RobotMap.mDriveLeftA_ID);
@@ -86,16 +89,15 @@ public static DifferentialDrive mDrive;
   //NavX AHRS
   ahrs = new AHRS(SerialPort.Port.kMXP);
 
-  //PIDTurn
+ /*  //PIDTurn
   PIDController PIDTurn = new PIDController(Constants.kTurn_P, Constants.kTurn_I, Constants.kTurn_D);
+
   PIDTurn.enableContinuousInput( -180.0 , 180.0);
   MathUtil.clamp(PIDTurn.calculate(mDriveLeftMaster.getSelectedSensorPosition()), -0.65, 0.65);
   MathUtil.clamp(PIDTurn.calculate(mDriveRightMaster.getSelectedSensorPosition()), -0.65, 0.65);
   PIDTurn.setTolerance(Constants.kToleranceDegrees);
-  
-  }
-  
-
+  */
+  } 
 
 
    public void UpShift() {
@@ -186,7 +188,8 @@ public static DifferentialDrive mDrive;
   //turning algirithm
   public void Curvature(double ThrottleAxis, double TurnAxis) {
     TurnRateCurved = (Constants.kTurnrateCurve*Math.pow(TurnAxis,3)+(1-Constants.kTurnrateCurve)*TurnAxis*Constants.kTurnrateLimit);
-    mDrive.curvatureDrive(ThrottleAxis, TurnRateCurved, true);
+    AccelRateCurved = (Constants.kAccelRateCurve*Math.pow(ThrottleAxis,3)+(1-Constants.kAccelRateCurve)*ThrottleAxis*Constants.kAccelRateLimit);
+    mDrive.curvatureDrive(AccelRateCurved, TurnRateCurved, true);
   }
   
   @Override

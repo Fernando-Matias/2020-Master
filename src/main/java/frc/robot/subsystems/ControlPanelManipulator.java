@@ -49,25 +49,28 @@ public class ControlPanelManipulator extends SubsystemBase {
 
 //Manipulator Control
    public void SpinControlPanel() {
-
-    CPManipulatorMotor.set(ControlMode.PercentOutput, 1.0);
+    CPManipulatorRetract.set(Constants.Off);
+    CPManipulatorExtend.set(Constants.On);
+    timer.delay(1);
+    CPManipulatorMotor.set(ControlMode.PercentOutput, 0.8);
+    Constants.cpmState = Constants.cpmStateExtended;
 
   }
   public void StopSpinControlPanel() {
     CPManipulatorMotor.set(ControlMode.PercentOutput, 0.0);
-  }
-
-//Pneumatics Control
-   public void PushUpManipulator() {
+    timer.delay(1);
     CPManipulatorRetract.set(Constants.On);
     CPManipulatorExtend.set(Constants.Off);
     Constants.cpmState = Constants.cpmStateRetracted;
   }
+
+//Pneumatics Control
+/*    public void PushUpManipulator() {
+
+  }
   public void PushDownManipulator() {
-    CPManipulatorRetract.set(Constants.Off);
-    CPManipulatorExtend.set(Constants.On);
-    Constants.cpmState = Constants.cpmStateExtended;
-  } 
+
+  }  */
 
   @Override
   public void periodic() {

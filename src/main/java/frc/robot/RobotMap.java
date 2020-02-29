@@ -28,7 +28,7 @@ public class RobotMap {
     public static final int mFalconShooter_ID = 12;
 
     //Climber Motor ID
-    public static final int mClimberMotor_ID = 19;
+    public static final int mClimberMotor_ID = 11;
 
     //Servo IDS
     public static final int mTurretServo_ID = 0;
@@ -50,25 +50,29 @@ public class RobotMap {
     public static final int mCPManipulator_ID = 8;
 
     //Pulley Motors
-    public static final int mBottomPulley_ID = 9;
-    public static final int mTopPulley_ID = 15;
+    public static final int mBottomPulley_ID = 7;
+    public static final int mTopPulley_ID = 9;
 
     //pnuematics
     //intake
-    public static final int pIntakeExtended_ID = 1;
-    public static final int pIntakeRetract_ID = 1;
+    public static final int pIntakeExtended_ID = 7;
+    public static final int pIntakeRetract_ID = 0;
 
     //Shifters
-    public static final int pShiftHigh_ID = 2;
+    public static final int pShiftHigh_ID = 5;
     public static final int pShiftLow_ID = 2;
+    
+    //climb
+    public static final int pEngageClimb = 4;
+    public static final int pDisEngageClimb = 3;
 
     //Popup 
-    public static final int pPopupUp_ID = 3;
-    public static final int pPopupDown_ID = 3;
+    public static final int pPopupUp_ID = 6;
+    public static final int pPopupDown_ID = 1;
 
     //Control pannal manipulator
     public static final int pCPManipulatorExtend_ID = 4;
-    public static final int PCPManipulatorRetract_ID = 4;
+    public static final int PCPManipulatorRetract_ID = 3;
 
     
 

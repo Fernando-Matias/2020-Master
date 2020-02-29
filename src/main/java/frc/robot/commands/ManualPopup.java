@@ -16,6 +16,7 @@ public class ManualPopup extends CommandBase {
    * Creates a new ManualPopup.
    */
   Popup popup = Popup.getInstance();
+
   public ManualPopup() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -23,6 +24,7 @@ public class ManualPopup extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,11 +32,11 @@ public class ManualPopup extends CommandBase {
   public void execute() {
     if (Constants.popupState == Constants.popupStateDown) {
       popup.PopUp();
-      Constants.popupState = Constants.popupStateUp;
+      
     }
     else if (Constants.popupState == Constants.popupStateUp) {
       popup.PopDown();
-      Constants.popupState = Constants.popupStateDown;
+      
     }
   }
 
@@ -46,6 +48,6 @@ public class ManualPopup extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

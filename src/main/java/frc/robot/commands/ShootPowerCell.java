@@ -33,7 +33,7 @@ public class ShootPowerCell extends CommandBase {
   public void execute() {
  /*     if (Constants.RampingState == Constants.RampingnotReset) { */
       falconShooter.RampingSequence();
-      Timer.delay(5);
+     // Timer.delay(2.5);
       falconShooter.ShootPowerCell();
 /*       Constants.RampingState = Constants.RampingReset;
     }
@@ -52,6 +52,6 @@ public class ShootPowerCell extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

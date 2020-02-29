@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.ControlPanelManipulator;
 
 public class SpinCPMTimed extends CommandBase {
@@ -28,8 +29,12 @@ public class SpinCPMTimed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  cpm.SpinControlPanel();
-  Timer.delay(1);
+  if (Constants.cpmState == Constants.cpmStateRetracted){
+    cpm.SpinControlPanel();
+  }
+  else if (Constants.cpmState == Constants.cpmStateExtended){
+    cpm.StopSpinControlPanel();
+  }
   }
 
   // Called once the command ends or is interrupted.
@@ -40,7 +45,6 @@ public class SpinCPMTimed extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    cpm.StopSpinControlPanel();
     return true;
   }
 }

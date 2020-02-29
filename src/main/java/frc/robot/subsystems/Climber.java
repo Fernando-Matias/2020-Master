@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -41,11 +42,17 @@ public class Climber extends SubsystemBase {
   }
 
   public void ClimberGoUp() {
-    ClimberMotor.set(ControlMode.PercentOutput, 1.0);
+    ClimberMotor.set(ControlMode.PercentOutput, -0.6);
+    Constants.climbState = Constants.climbing;
+  }
+
+  public void ClimberStop(){
+    ClimberMotor.set(ControlMode.PercentOutput, 0.0);
   }
 
   public void ClimberGoDown() {
-    ClimberMotor.set(ControlMode.PercentOutput, -1.0);
+    ClimberMotor.set(ControlMode.PercentOutput, 0.6);
+    Constants.climbState = Constants.pullingRobotUp;
   }
 
   @Override

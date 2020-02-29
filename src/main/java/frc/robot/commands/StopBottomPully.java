@@ -8,16 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Popup;
 
-public class StopIntake extends CommandBase {
+public class StopBottomPully extends CommandBase {
   /**
-   * Creates a new StopIntake.
+   * Creates a new StopBottomPully.
    */
 
-  Intake intake = Intake.getInstance();
+  Popup popup = Popup.getInstance();
 
-  public StopIntake() {
+  public StopBottomPully() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -29,7 +29,7 @@ public class StopIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.StopIntakePowerCell();
+    popup.StopBottomPulley();
   }
 
   // Called once the command ends or is interrupted.
@@ -40,6 +40,6 @@ public class StopIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

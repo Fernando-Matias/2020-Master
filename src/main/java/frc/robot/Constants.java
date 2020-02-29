@@ -31,8 +31,12 @@ public final class Constants {
     public static final double kLooperDt = 0.01;
 
     //Varibles for Turning on Drivetrain
-    public static double kTurnrateCurve = 0.1;
+    public static double kTurnrateCurve = 0.4;
     public static double kTurnrateLimit = 0.8;
+
+    //Variables for throttle axis
+    public static double kAccelRateCurve = 0.4; // test variables
+    public static double kAccelRateLimit = 0.8; // test variables
 
     //yes just yes (easier this way)
     public static final boolean On = true;
@@ -56,12 +60,18 @@ public final class Constants {
     //Control pannel manipulator 
     public static final int cpmStateRetracted = 0;
     public static final int cpmStateExtended = 1;
-    public static int cpmState = cpmStateExtended;
+    public static int cpmState = cpmStateRetracted;
 
     //NavX State
     public static final int NavxResete = 0;
     public static final int Navxold = 1;
     public static int NavxState = Navxold;
+
+    //Climbing button states
+    public static final int climbing = 0;
+    public static final int climbResting = 1;
+    public static final int pullingRobotUp = 2;
+    public static int climbState = climbResting;
 
     //Ramping Shooter State
     public static final int RampingReset = 0;
@@ -94,13 +104,13 @@ public final class Constants {
     public static final int rightSideBad = 1;
     public static int rightSide = rightSideBad;
 
-    public static final int pulleyMotorStateSpinning = 0;
-    public static final int pulleyMotorStateStill = 1;
-    public static int pulleyMotorState = pulleyMotorStateStill;
+    public static final int bottomPulleyStill = 0;
+    public static final int bottomPulleySpinning = 1;
+    public static int bottomPulleyState = bottomPulleyStill;
     
-    public static final int pulleyMotorTopStateSpinning = 0;
-    public static final int pulleyMotorTopStateStill = 1;
-    public static int pulleyMotorTopState = pulleyMotorTopStateStill;
+    public static final int TopPulleySpinning = 0;
+    public static final int TopPulleyStill = 1;
+    public static int TopPulleyState = TopPulleyStill;
      
     public static final int intakeMotorSpinning = 0;
     public static final int intakeMotorStill = 1;

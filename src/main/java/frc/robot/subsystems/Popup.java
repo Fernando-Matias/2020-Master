@@ -38,6 +38,9 @@ public class Popup extends SubsystemBase {
     popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.pPopupUp_ID);
     popupDown = new Solenoid(RobotMap.PCM_B, RobotMap.pPopupDown_ID);
 
+    pulleyTopMotor = new TalonSRX(RobotMap.mTopPulley_ID);
+    pulleyBottomMotor = new TalonSRX(RobotMap.mBottomPulley_ID);
+
     pulleyTopMotor.configFactoryDefault();
     pulleyTopMotor.setNeutralMode(NeutralMode.Brake);
     pulleyTopMotor.configContinuousCurrentLimit(40);
@@ -54,23 +57,23 @@ public class Popup extends SubsystemBase {
   }
 
   public void UpBottomPulley(){
-    pulleyTopMotor.set(ControlMode.PercentOutput, 0.5);
-    Constants.pulleyMotorTopState = Constants.pulleyMotorStateSpinning;
-  }
-
-  public void UpTopPulley(){
     pulleyBottomMotor.set(ControlMode.PercentOutput, 0.5);
-    Constants.pulleyMotorState = Constants.pulleyMotorStateSpinning;
+    Constants.bottomPulleyState = Constants.bottomPulleySpinning;
   }
 
   public void StopBottomPulley(){
     pulleyBottomMotor.set(ControlMode.PercentOutput, 0.0);
-    Constants.pulleyMotorState = Constants.pulleyMotorStateStill;
+    Constants.bottomPulleyState = Constants.bottomPulleyStill;
+  }
+  
+  public void UpTopPulley(){
+    pulleyTopMotor.set(ControlMode.PercentOutput, 0.5);
+    Constants.TopPulleyState = Constants.TopPulleySpinning;
   }
 
   public void StopTopPulley() {
     pulleyTopMotor.set(ControlMode.PercentOutput, 0.0);
-    Constants.pulleyMotorTopState = Constants.pulleyMotorTopStateStill;
+    Constants.TopPulleyState = Constants.TopPulleyStill;
   }
 
   public void PopUp() {

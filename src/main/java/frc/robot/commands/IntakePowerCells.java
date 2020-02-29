@@ -30,14 +30,14 @@ public class IntakePowerCells extends CommandBase {
   @Override
   public void execute() {
     if (Constants.intakeState == Constants.intakeStateRetracted){
-      intake.IntakePowerCell();
+      //intake.IntakePowerCell();
       intake.ExtendIntake();
-      Constants.intakeState = Constants.intakeStateExtended;
+      
     }
     else if (Constants.intakeState == Constants.intakeStateExtended){
-      intake.StopIntakePowerCell();
+      //intake.StopIntakePowerCell();
       intake.RetractIntake();
-      Constants.intakeState = Constants.intakeStateRetracted;
+      
     }
   }
 

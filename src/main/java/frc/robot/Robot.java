@@ -18,9 +18,13 @@ import frc.robot.Input.*;
 import frc.robot.Constants;
 
 import frc.robot.OI;
+import frc.robot.subsystems.ControlPanelManipulator;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.Constants;
-import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Popup;
+
+//import frc.robot.subsystems.Turret;
 //import frc.robot.subsystems.Limelight;
 
 
@@ -38,10 +42,16 @@ import frc.robot.subsystems.Turret;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public AHRS ahrs;
+  private static OI m_oi;
+
+  
 
   //Limelight limelight = Limelight.getInstance();
+  Popup popup = Popup.getInstance();
+  Intake intake = Intake.getInstance();
   DriveTrain driveTrain = DriveTrain.getInstance();
-  Turret turret = Turret.getInstance();
+  ControlPanelManipulator cpm = ControlPanelManipulator.GetInstance();
+  //Turret turret = Turret.getInstance();
 
   //private RobotContainer m_robotContainer;
 
@@ -55,9 +65,12 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
 
     //m_robotContainer = new RobotContainer();
-
-    OI.registerControls();
+    m_oi = new OI();
+    m_oi.registerControls();
     
+    popup.PopDown();
+    intake.RetractIntake();
+    driveTrain.UpShift();
 
 
   }
@@ -123,6 +136,10 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    popup.PopDown();
+    intake.RetractIntake();
+    driveTrain.UpShift();
+    cpm.StopSpinControlPanel();
 
   }
 
@@ -132,7 +149,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
         // Driver Orientation
-    if (Constants.DriverOrientation == Constants.FrontOrientation) {
+    
+/*     if (Constants.DriverOrientation == Constants.FrontOrientation) {
       driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
 
     }
@@ -147,8 +165,10 @@ public class Robot extends TimedRobot {
 
     else if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
       
-    }
-      
+    } */
+
+    driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
+
     }
   
 

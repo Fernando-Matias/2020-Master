@@ -35,7 +35,7 @@ public class Intake extends SubsystemBase {
 
   public Intake() {
     intakeExtend = new Solenoid(RobotMap.PCM_A, RobotMap.pIntakeExtended_ID);
-    intakeRetract = new Solenoid(RobotMap.PCM_A, RobotMap.pIntakeRetract_ID);
+    intakeRetract = new Solenoid(RobotMap.PCM_B, RobotMap.pIntakeRetract_ID);
 
     intakeMotor = new TalonSRX(RobotMap.mIntakeMotor_ID);
 
@@ -57,10 +57,14 @@ public class Intake extends SubsystemBase {
    public void ExtendIntake() {
     intakeExtend.set(Constants.On);
     intakeRetract.set(Constants.Off);
+    intakeMotor.set(ControlMode.PercentOutput, -1.0);
+    Constants.intakeState = Constants.intakeStateExtended;
   }
   public void RetractIntake() {
     intakeExtend.set(Constants.Off);
     intakeRetract.set(Constants.On);
+    intakeMotor.set(ControlMode.PercentOutput, 0.0);
+    Constants.intakeState = Constants.intakeStateRetracted;
   } 
 
   @Override

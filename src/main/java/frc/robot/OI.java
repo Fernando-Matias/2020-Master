@@ -19,20 +19,39 @@ public class OI {
     private static final LogitechController Gamepad = new LogitechController(RobotMap.mGamepadPort);
 
     public static void registerControls(){
-      LeftStick.getButton2().whenPressed(new IntakePowerCells());
-      LeftStick.getButton3().whenPressed(new TargetOff());
-      LeftStick.getButton5().whenPressed(new DriverFrontOrientation());
-      LeftStick.getButtonTrigger().whenPressed(new StopShootPowerCell());
+
+      //LeftStick.getButton2().whenPressed(new IntakePowerCells());
+      //LeftStick.getButton3().whenPressed(new TargetOff());
+      //LeftStick.getButton5().whenPressed(new DriverFrontOrientation());
+      //LeftStick.getButton4().whenHeld(new BottomPulley());
+      RightStick.getButtonTrigger().whenPressed(new TopPulley());
+      RightStick.getButtonTrigger().whenInactive(new StopTopPulley());
+      
 
       RightStick.getButton2().whenPressed(new ManualPopup());
-      RightStick.getButton3().whenPressed(new Target());
-      RightStick.getButton5().whenPressed(new DriverBackOrientation());
-      RightStick.getButtonTrigger().whenPressed(new ShootPowerCell());
+      //RightStick.getButton3().whenPressed(new Target());
+      //RightStick.getButton4().whenHeld(new TopPulley());
+      //RightStick.getButton5().whenPressed(new DriverBackOrientation());
+      LeftStick.getButtonTrigger().whenPressed(new ShootPowerCell());
+      LeftStick.getButtonTrigger().whenInactive(new StopShootPowerCell());
 
-      Gamepad.getButtonBack().whenPressed(new AutoTurretMode());
-      Gamepad.getButtonStart().whenPressed(new ManualTurretMode());
-      Gamepad.getButtonY().whenHeld(new ClimberGoUp());
-      Gamepad.getButtonB().whenHeld(new ClimberGoDown());
+      //Gamepad.getButtonBack().whenPressed(new AutoTurretMode());
+      //Gamepad.getButtonStart().whenPressed(new ManualTurretMode());
+      //Gamepad.getButtonY().whenHeld(new ClimberGoUp());
+      //Gamepad.getButtonX().whenHeld(new ClimberGoDown());
+      Gamepad.getButtonA().whenPressed(new IntakePowerCells());
+      Gamepad.getButtonY().whenPressed(new SpinCPMTimed());
+
+      Gamepad.getButtonX().whenPressed(new ClimberGoUp());
+      //Gamepad.getButtonX().whenInactive(new Climbstop());
+
+      Gamepad.getButtonB().whenPressed(new ClimberGoDown());
+      Gamepad.getButtonB().whenInactive(new Climbstop());
+
+      Gamepad.getLeftBumper().whenPressed(new BottomPulley());
+      Gamepad.getLeftBumper().whenInactive(new StopBottomPully());
+      //Gamepad.getRightBumper().whenPressed(new TopPulley());
+
 
     }
 
