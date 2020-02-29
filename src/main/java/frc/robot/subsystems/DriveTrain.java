@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpiutil.math.MathUtil;
@@ -23,7 +24,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.*;
 
 import frc.robot.utility.DefaultTalonFXDrive;
+import frc.robot.utility.PurePursuit.AdaptivePurePursuitController;
+import frc.robot.utility.PurePursuit.Kinematics;
+import frc.robot.utility.PurePursuit.Path;
+import frc.robot.utility.PurePursuit.RigidTransform2d;
+import frc.robot.utility.PurePursuit.SynchronousPID;
 import frc.robot.RobotMap;
+import frc.robot.RobotState;
 import frc.robot.Constants;
 
 /**
@@ -40,6 +47,15 @@ public class DriveTrain extends SubsystemBase {
   public static WPI_TalonFX mDriveLeftMaster, mDriveLeftB;
   public static WPI_TalonFX mDriveRightMaster, mDriveRightB;
   private static Solenoid mShifter_High, mShifter_Low;
+
+  private double TurnrateCurved, mLastHeadingErrorDegrees, leftvelo_,  rightvelo_, left_distance, right_distance, time;
+
+  //Velocity & base lock control for K
+  protected static final int kVelocityControlSlot = 0;
+
+    //PID
+  private static AdaptivePurePursuitController pathFollowingController_;
+  private static SynchronousPID velocityHeadingPid_;
 
   AHRS ahrs;
   public PIDController PIDTurn;
@@ -97,6 +113,11 @@ public class DriveTrain extends SubsystemBase {
   MathUtil.clamp(PIDTurn.calculate(mDriveRightMaster.getSelectedSensorPosition()), -0.65, 0.65);
   PIDTurn.setTolerance(Constants.kToleranceDegrees);
   */
+
+    //PID setting
+    velocityHeadingPid_ = new SynchronousPID(Constants.kDriveHeadingVelocityKp, Constants.kDriveHeadingVelocityKi, Constants.kDriveHeadingVelocityKd);
+    velocityHeadingPid_.setOutputRange(-30, 30);
+
   } 
 
 
@@ -192,6 +213,55 @@ public class DriveTrain extends SubsystemBase {
     mDrive.curvatureDrive(ThrottleAxis, TurnRateCurved, true);
   }
   
+
+  public void followPath(Path path, boolean reversed) {
+    configureTalonsForSpeedControl();
+    velocityHeadingPid_.reset();
+    pathFollowingController_ = new AdaptivePurePursuitController(Constants.kPathFollowingLookahead,
+      Constants.kPathFollowingMaxAccel, Constants.kLooperDt, path, reversed, 0.25);
+    updatePathFollower();
+    }
+    private void configureTalonsForSpeedControl() {
+      mDriveLeftMaster.set(ControlMode.Velocity, 0.0);
+      mDriveLeftMaster.selectProfileSlot(kVelocityControlSlot, 0);
+      mDriveLeftMaster.configAllowableClosedloopError(0, Constants.kDriveVelocityAllowableError);
+      mDriveRightMaster.set(ControlMode.Velocity, 0.0);
+      mDriveRightMaster.selectProfileSlot(kVelocityControlSlot, 0);
+      mDriveRightMaster.configAllowableClosedloopError(0, Constants.kDriveVelocityAllowableError);
+      setBrake();
+    }
+
+    public void updateVelocitySetpoint(double left_inches_per_sec, double right_inches_per_sec) {
+      leftvelo_ = inchesPerSecondToVelo(left_inches_per_sec);
+      rightvelo_ = inchesPerSecondToVelo(right_inches_per_sec);
+      mDriveLeftMaster.set(ControlMode.Velocity, -leftvelo_);
+      mDriveRightMaster.set(ControlMode.Velocity, rightvelo_);
+      SmartDashboard.putNumber("leftvelo", leftvelo_);
+      SmartDashboard.putNumber("rightvelo", rightvelo_);
+    }
+
+    public void updatePathFollower() {
+      RigidTransform2d robot_pose = RobotState.getInstance().getLatestFieldToVehicle().getValue();
+      RigidTransform2d.Delta command = pathFollowingController_.update(robot_pose, Timer.getFPGATimestamp());
+      Kinematics.DriveVelocity setpoint = Kinematics.inverseKinematics(command);
+    
+      // Scale the command to respect the max velocity limits
+      double max_vel = 0.0;
+      max_vel = Math.max(max_vel, Math.abs(setpoint.left));
+      max_vel = Math.max(max_vel, Math.abs(setpoint.right));
+      if (max_vel > Constants.kPathFollowingMaxVel) {
+          double scaling = Constants.kPathFollowingMaxVel / max_vel;
+          setpoint = new Kinematics.DriveVelocity(setpoint.left * scaling, setpoint.right * scaling);
+      }
+      updateVelocitySetpoint(setpoint.left, setpoint.right);
+      SmartDashboard.putNumber("setpoint.left", setpoint.left);
+      SmartDashboard.putNumber("setpoint.right", setpoint.right);
+    }
+
+    private double inchesPerSecondToVelo(double inches_per_second) {
+      return inches_per_second * Constants.kRatioFactor;
+    }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
