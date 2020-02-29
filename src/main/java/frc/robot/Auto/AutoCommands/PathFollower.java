@@ -5,17 +5,42 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.Auto.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriverFrontOrientation extends CommandBase {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.utility.PurePursuit.Path;
+import frc.robot.utility.PurePursuit.Path.Waypoint;
+import frc.robot.utility.PurePursuit.Rotation2d;
+import frc.robot.utility.PurePursuit.Translation2d;
+import frc.robot.utility.PurePursuit.RigidTransform2d;
+import frc.robot.utility.PurePursuit.Kinematics;
+import frc.robot.RobotState;
+import frc.robot.Auto.AutoPaths;
+import edu.wpi.first.wpilibj.Timer;
+
+public class PathFollower extends CommandBase {
   /**
-   * Creates a new DriverFrontOrientation.
+   * Creates a new PathFollower.
    */
-  public DriverFrontOrientation() {
+
+  Path path;
+
+  Rotation2d gyro_angle;
+  RigidTransform2d odometry;
+  RigidTransform2d.Delta velocity;
+  RobotState robotstate = RobotState.getInstance();
+  DriveTrain driveTrain = DriveTrain.getInstance();
+
+  public PathFollower(Path path) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.path = path;
   }
 
   // Called when the command is initially scheduled.
@@ -26,7 +51,6 @@ public class DriverFrontOrientation extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Constants.DriverOrientation = Constants.FrontOrientation;
   }
 
   // Called once the command ends or is interrupted.
@@ -37,8 +61,6 @@ public class DriverFrontOrientation extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
-    return true;
-    
+    return false;
   }
 }

@@ -10,6 +10,8 @@ package frc.robot;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -24,7 +26,10 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Popup;
 
-//import frc.robot.subsystems.Turret;
+import frc.robot.Auto.AutoCommands.*;
+import frc.robot.Auto.AutoPaths;
+import frc.robot.Auto.BasicAuto;
+import frc.robot.subsystems.Turret;
 //import frc.robot.subsystems.Limelight;
 
 
@@ -51,7 +56,11 @@ public class Robot extends TimedRobot {
   Intake intake = Intake.getInstance();
   DriveTrain driveTrain = DriveTrain.getInstance();
   ControlPanelManipulator cpm = ControlPanelManipulator.GetInstance();
-  //Turret turret = Turret.getInstance();
+  AutoPaths paths = AutoPaths.getInstance();
+
+  Command autonomousCommand;
+  SendableChooser<Command> autoProgram = new SendableChooser<>();
+  Turret turret = Turret.getInstance();
 
   //private RobotContainer m_robotContainer;
 
@@ -72,6 +81,11 @@ public class Robot extends TimedRobot {
     intake.RetractIntake();
     driveTrain.UpShift();
 
+    autoProgram.setDefaultOption("PathA", new PathFollower(paths.getFirstPath()));
+    autoProgram.setDefaultOption("PathB", new PathFollower(paths.getSecondPath()));
+    autoProgram.setDefaultOption("basic", new BasicAuto());
+
+    SmartDashboard.putData("Selected Auto", autoProgram);
 
   }
 
@@ -115,6 +129,8 @@ public class Robot extends TimedRobot {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
+    autonomousCommand = autoProgram.getSelected();
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
@@ -140,6 +156,7 @@ public class Robot extends TimedRobot {
     intake.RetractIntake();
     driveTrain.UpShift();
     cpm.StopSpinControlPanel();
+    Constants.DriverOrientation = Constants.FrontOrientation;
 
   }
 
@@ -150,7 +167,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
         // Driver Orientation
     
-/*     if (Constants.DriverOrientation == Constants.FrontOrientation) {
+     if (Constants.DriverOrientation == Constants.FrontOrientation) {
       driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
 
     }
@@ -158,16 +175,18 @@ public class Robot extends TimedRobot {
       driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
     }
 
+    turret.UseManualInput();
+
     // Turret Control
-    if (Constants.TurretAimState == Constants.TurretAimStateManual) {
+/*     if (Constants.TurretAimState == Constants.TurretAimStateManual) {
       turret.UseManualInput();
     }
 
     else if (Constants.TurretAimState == Constants.TurretAimStateAuto) {
       
-    } */
+    }  */
 
-    driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
+    //driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
 
     }
   

@@ -91,6 +91,15 @@ public final class Constants {
     //Timeout for Encoders
     public static final int kTimeoutms = 10;
 
+    public static double kDriveHeadingVelocityKp = 4.0; // 6.0;
+    public static double kDriveHeadingVelocityKi = 0.0;
+    public static double kDriveHeadingVelocityKd = 50.0;
+
+    public static double kRatioFactor = 43;
+
+    //for Drivetrain
+    public static int kDriveVelocityAllowableError = 0;
+
     //controls 
     public static final int trackON = 0;
     public static final int trackOFF = 1;
@@ -147,7 +156,8 @@ public final class Constants {
     //difficult things
     public static double kTrackLengthInches = 8.265;
     public static double kTrackWidthInches = 23.8;
-
+    public static double kTrackEffectiveDiameter = (kTrackWidthInches * kTrackWidthInches
+            + kTrackLengthInches * kTrackLengthInches) / kTrackWidthInches;
     public static double kTrackScrubFactor = 0.5;
     public static double kDriveWheelDiameterInches = 6.25;
 
@@ -192,7 +202,7 @@ public final class Constants {
     public static final double kInertiaSteeringGain = 0.0; // angular velocity command is multiplied by this gain *
     // our speed
     // in inches per sec
-    public static final double kPathFollowingMaxAccel = 80.0;  // inches per second ^ 2
+/*     public static final double kPathFollowingMaxAccel = 80.0;  // inches per second ^ 2
     public static final double kPathFollowingMaxVel = 120.0; // inches per second
     public static final double kPathFollowingProfileKp = 0.3 / 12.0;  // % throttle per inch of error
     public static final double kPathFollowingProfileKi = 0.0;
@@ -205,7 +215,11 @@ public final class Constants {
     public static final double kPathStopSteeringDistance = 12.0;
     public static final double kDriveVoltageRampRate = 0.0;
     public static final int kDriveCurrentThrottledLimit = 30; // amps
-    public static final int kDriveCurrentUnThrottledLimit = 80; // amps
+    public static final int kDriveCurrentUnThrottledLimit = 80; // amps */
+
+    public static double kPathFollowingLookahead = 72.0; // inches
+    public static double kPathFollowingMaxVel = 120.0; // inches/sec
+    public static double kPathFollowingMaxAccel = 50.0; // inches/sec^2
     
 
     //PIDTurn
