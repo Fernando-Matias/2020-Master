@@ -59,8 +59,8 @@ public class RobotMap {
     public static final int pIntakeRetract_ID = 0;
 
     //Shifters
-    public static final int pShiftHigh_ID = 5;
-    public static final int pShiftLow_ID = 2;
+    public static final int pShiftHigh_ID = 2;
+    public static final int pShiftLow_ID = 5;
     
     //climb
     public static final int pEngageClimb = 4;

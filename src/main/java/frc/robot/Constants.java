@@ -95,10 +95,17 @@ public final class Constants {
     public static double kDriveHeadingVelocityKi = 0.0;
     public static double kDriveHeadingVelocityKd = 50.0;
 
+    //yes 
+    public static boolean rampingcompete = false;
+
     public static double kRatioFactor = 43;
 
     //for Drivetrain
     public static int kDriveVelocityAllowableError = 0;
+
+    public static final int notDoneRamping = 0;
+    public static final int doneRamping = 1;
+    public static int shootState = notDoneRamping;
 
     //controls 
     public static final int trackON = 0;

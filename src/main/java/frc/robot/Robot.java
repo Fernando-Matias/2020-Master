@@ -15,6 +15,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.MjpegServer;
+import edu.wpi.cscore.UsbCamera;
 
 import frc.robot.Input.*;
 import frc.robot.Constants;
@@ -25,6 +30,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Popup;
+
 
 import frc.robot.Auto.AutoCommands.*;
 import frc.robot.Auto.AutoPaths;
@@ -81,8 +87,9 @@ public class Robot extends TimedRobot {
     intake.RetractIntake();
     driveTrain.UpShift();
 
-    autoProgram.setDefaultOption("PathA", new PathFollower(paths.getFirstPath()));
-    autoProgram.setDefaultOption("PathB", new PathFollower(paths.getSecondPath()));
+    //autoProgram.setDefaultOption("PathA", new PathFollower(paths.getFirstPath()));
+    //autoProgram.setDefaultOption("PathB", new PathFollower(paths.getSecondPath()));
+
     autoProgram.setDefaultOption("basic", new BasicAuto());
 
     SmartDashboard.putData("Selected Auto", autoProgram);
@@ -106,6 +113,10 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     //limelight.LimelightOutput();
     driveTrain.NavXOutput();
+
+    //CameraServer.getInstance().startAutomaticCapture();
+    //CvSink cvSink = CameraServer.getInstance().getVideo();
+    //CvSource outputStream = CameraServer.getInstance().putVideo("blur", 640, 480);
     
     
   }
@@ -124,15 +135,18 @@ public class Robot extends TimedRobot {
   /**
    * This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
    */
+  BasicAuto auto;
   @Override
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    // schedule the autonomous command (example)
-    autonomousCommand = autoProgram.getSelected();
+    //schedule the autonomous command (example)
+    //autonomousCommand = autoProgram.getSelected();
+    auto = new BasicAuto();
+    auto.schedule();
 
     if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+     // m_autonomousCommand.schedule();
     }
   }
 
@@ -141,6 +155,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+
   }
 
   @Override
@@ -157,6 +172,7 @@ public class Robot extends TimedRobot {
     driveTrain.UpShift();
     cpm.StopSpinControlPanel();
     Constants.DriverOrientation = Constants.FrontOrientation;
+    turret.TurretStayStill();
 
   }
 
@@ -172,10 +188,10 @@ public class Robot extends TimedRobot {
 
     }
     else if (Constants.DriverOrientation == Constants.BackOrientation) {
-      driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInput());
+      driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInputInverted());
     }
 
-    turret.UseManualInput();
+    //turret.UseManualInput();
 
     // Turret Control
 /*     if (Constants.TurretAimState == Constants.TurretAimStateManual) {

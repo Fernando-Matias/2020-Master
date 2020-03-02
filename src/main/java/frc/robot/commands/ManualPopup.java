@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Popup;
+
+import frc.robot.subsystems.FalconShooter;
 import frc.robot.Constants;
 
 public class ManualPopup extends CommandBase {
@@ -16,6 +18,7 @@ public class ManualPopup extends CommandBase {
    * Creates a new ManualPopup.
    */
   Popup popup = Popup.getInstance();
+  FalconShooter falconShooter = FalconShooter.getInstance();
 
   public ManualPopup() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -31,7 +34,13 @@ public class ManualPopup extends CommandBase {
   @Override
   public void execute() {
     if (Constants.popupState == Constants.popupStateDown) {
+      //   falconShooter.RampingSequence();
+
+      // // Timer.delay(2.5);
+      //  falconShooter.ShootPowerCell();
+      //  Constants.shootState = Constants.doneRamping;
       popup.PopUp();
+
       
     }
     else if (Constants.popupState == Constants.popupStateUp) {

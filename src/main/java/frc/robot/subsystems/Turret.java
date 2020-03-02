@@ -46,14 +46,17 @@ public class Turret extends SubsystemBase {
     TurretServo.set(0.0);
 
   }
+  public void TurretStayStill(){
+    TurretServo.set(0.5);
+  }
 
   public void turretLeftTurn(){
-    TurretServo.setSpeed(1.0);
+    TurretServo.setSpeed(0.0);
     TurretServo.set(1.0);
   }
 
   public void HoodOut(){
-    HoodServo.setSpeed(1.0);
+    HoodServo.setSpeed(0.0);
     HoodServo.set(1.0);
   }
 

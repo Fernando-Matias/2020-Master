@@ -29,9 +29,11 @@ public class TopPulley extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //if (Constants.TopPulleyState == Constants.TopPulleyStill){
+    if (Constants.shootState == Constants.doneRamping){
       popup.UpTopPulley();
-    //}
+      popup.UpBottomPulley();
+      //Constants.shootState = Constants.notDoneRamping;
+    }
     //else if (Constants.TopPulleyState == Constants.TopPulleySpinning){
       //popup.StopTopPulley();
     //}

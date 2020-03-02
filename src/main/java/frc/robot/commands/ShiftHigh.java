@@ -7,19 +7,16 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FalconShooter;
-import frc.robot.Constants;
+import frc.robot.subsystems.DriveTrain;
 
-public class ShootPowerCell extends CommandBase {
+public class ShiftHigh extends CommandBase {
   /**
-   * Creates a new ShootPowerCell.
+   * Creates a new ShiftHigh.
    */
+  DriveTrain driveTrain = DriveTrain.getInstance();
 
-  FalconShooter falconShooter = FalconShooter.getInstance();
-
-  public ShootPowerCell() {
+  public ShiftHigh() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -31,19 +28,7 @@ public class ShootPowerCell extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
- /*     if (Constants.RampingState == Constants.RampingnotReset) { */
-      falconShooter.RampingSequence();
-
-     // Timer.delay(2.5);
-      falconShooter.ShootPowerCell();
-      Constants.shootState = Constants.doneRamping;
-/*       Constants.RampingState = Constants.RampingReset;
-    }
-    else {
-
-    } */
-
-    
+    driveTrain.UpShift();
   }
 
   // Called once the command ends or is interrupted.

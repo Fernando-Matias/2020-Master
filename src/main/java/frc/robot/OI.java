@@ -22,16 +22,20 @@ public class OI {
 
       //LeftStick.getButton2().whenPressed(new IntakePowerCells());
       //LeftStick.getButton3().whenPressed(new TargetOff());
-      LeftStick.getButton5().whenPressed(new DriverFrontOrientation());
+      LeftStick.getButton3().whenPressed(new DriverFrontOrientation());
       //LeftStick.getButton4().whenHeld(new BottomPulley());
       RightStick.getButtonTrigger().whenPressed(new TopPulley());
       RightStick.getButtonTrigger().whenInactive(new StopTopPulley());
+
+      RightStick.getButton4().whenPressed(new ShiftLow());
+      RightStick.getButton4().whenInactive(new ShiftHigh());
+      
       
 
       RightStick.getButton2().whenPressed(new ManualPopup());
       //RightStick.getButton3().whenPressed(new Target());
       //RightStick.getButton4().whenHeld(new TopPulley());
-      RightStick.getButton5().whenPressed(new DriverBackOrientation());
+      RightStick.getButton3().whenPressed(new DriverBackOrientation());
       LeftStick.getButtonTrigger().whenPressed(new ShootPowerCell());
       LeftStick.getButtonTrigger().whenInactive(new StopShootPowerCell());
 
@@ -42,11 +46,11 @@ public class OI {
       Gamepad.getButtonA().whenPressed(new IntakePowerCells());
       Gamepad.getButtonY().whenPressed(new SpinCPMTimed());
 
-      Gamepad.getButtonX().whenPressed(new ClimberGoUp());
+      //Gamepad.getButtonX().whenPressed(new ClimberGoUp());
       //Gamepad.getButtonX().whenInactive(new Climbstop());
 
-      Gamepad.getButtonB().whenPressed(new ClimberGoDown());
-      Gamepad.getButtonB().whenInactive(new Climbstop());
+      //Gamepad.getButtonB().whenPressed(new ClimberGoDown());
+      //Gamepad.getButtonB().whenInactive(new Climbstop());
 
       Gamepad.getLeftBumper().whenPressed(new BottomPulley());
       Gamepad.getLeftBumper().whenInactive(new StopBottomPully());

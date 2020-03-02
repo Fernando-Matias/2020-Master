@@ -187,13 +187,13 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void NavX40deg(){
-    if (getYaw() < 40 && getYaw() > 35){
+    if (getYaw() < -40 && getYaw() > -35){
       mDrive.arcadeDrive(0.0, 0.0);
     }
-    else if (getYaw() > 40){
+    else if (getYaw() > -40){
       mDrive.arcadeDrive(0.0, 0.2);
     }
-    else if (getYaw() < 35){
+    else if (getYaw() < -35){
       mDrive.arcadeDrive(0.0, 0.2);
     }
   }
@@ -222,7 +222,7 @@ public class DriveTrain extends SubsystemBase {
   public void Curvature(double ThrottleAxis, double TurnAxis) {
     TurnRateCurved = (Constants.kTurnrateCurve*Math.pow(TurnAxis,3)+(1-Constants.kTurnrateCurve)*TurnAxis*Constants.kTurnrateLimit);
     AccelRateCurved = (Constants.kAccelRateCurve*Math.pow(ThrottleAxis,3)+(1-Constants.kAccelRateCurve)*ThrottleAxis*Constants.kAccelRateLimit);
-    mDrive.curvatureDrive(ThrottleAxis, TurnRateCurved, true);
+    mDrive.curvatureDrive(AccelRateCurved, TurnRateCurved, true);
   }
   
 

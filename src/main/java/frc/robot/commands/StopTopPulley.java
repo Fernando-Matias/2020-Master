@@ -30,6 +30,7 @@ public class StopTopPulley extends CommandBase {
   @Override
   public void execute() {
     popup.StopTopPulley();
+    popup.StopBottomPulley();
   }
 
   // Called once the command ends or is interrupted.

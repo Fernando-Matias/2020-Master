@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.RobotMap;
 import frc.robot.utility.FalconShooterConfig;
 
@@ -34,16 +35,56 @@ public class FalconShooter extends SubsystemBase {
     falconShooter = new FalconShooterConfig(RobotMap.mFalconShooter_ID);
   }
 
-  public void RampingSequence(){
-    timer.start();
-    for (double i = 0; i <= 0.6; i = i + 0.1){
-      SmartDashboard.putNumber("ramping", i);
-      falconShooter.set(ControlMode.PercentOutput, i);
-      Timer.delay(.5);
-      }
-    timer.stop();
+  public void AutoRamping(){
     timer.reset();
+    timer.start();
+    if (Constants.rampingcompete == false){
+      for (double i = 0; i <= 0.6; i = i + 0.1){
+        SmartDashboard.putNumber("ramping", i);
+        falconShooter.set(ControlMode.PercentOutput, i);
+        Timer.delay(.5);
+      }
+      Constants.rampingcompete = true;
     }
+    else {
+      falconShooter.set(ControlMode.PercentOutput, 0.5);
+    }
+    timer.stop();
+    
+    }
+
+  
+    public void RampingSequence(){
+     timer.start();
+     double i = 0;
+    //  for (double i = 0; i <= 0.6; i = i + 0.1){
+    //    SmartDashboard.putNumber("ramping", i);
+    //    falconShooter.set(ControlMode.PercentOutput, i);
+    //    Timer.delay(.5);
+    //  }
+    if ( i == 1){
+
+    }
+    // double i = 0;
+    // do{
+    //   System.out.println(i);
+    //   i = i + 0.1;
+    //   Timer.delay(.5);
+    //   falconShooter.set(ControlMode.PercentOutput, i);
+    // }while(i < 0.5);
+
+    // if ( i  == 0){
+    //   i = 0.1;
+    //   falconShooter.set(ControlMode.PercentOutput, i);
+    //   Timer.delay(.5);
+    // }
+    // if( i == 0.1){
+    //   i = 0.2;
+    //   falconShooter.set(ControlMode.PercentOutput, i);
+    //   Timer.delay(.5);
+    // }
+
+  }
 
   public void ShootPowerCell() {
     falconShooter.set(ControlMode.PercentOutput, 0.5);
