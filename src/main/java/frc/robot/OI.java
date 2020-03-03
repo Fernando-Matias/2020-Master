@@ -36,7 +36,7 @@ public class OI {
       //RightStick.getButton3().whenPressed(new Target());
       //RightStick.getButton4().whenHeld(new TopPulley());
       RightStick.getButton3().whenPressed(new DriverBackOrientation());
-      LeftStick.getButtonTrigger().whenPressed(new ShootPowerCell());
+      LeftStick.getButtonTrigger().whenPressed(new Ramping());
       LeftStick.getButtonTrigger().whenInactive(new StopShootPowerCell());
 
       //Gamepad.getButtonBack().whenPressed(new AutoTurretMode());
