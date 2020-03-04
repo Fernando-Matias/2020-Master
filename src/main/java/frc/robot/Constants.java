@@ -88,6 +88,11 @@ public final class Constants {
     public static final int TurretAimStateAuto = 1;
     public static int TurretAimState = TurretAimStateAuto;
 
+    //Hood State
+    public static final int HoodOut = 0;
+    public static final int HoodIn = 1;
+    public static int HoodState = TurretAimStateAuto;
+
     //Timeout for Encoders
     public static final int kTimeoutms = 10;
 
