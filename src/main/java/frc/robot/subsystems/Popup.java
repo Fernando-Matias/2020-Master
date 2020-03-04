@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 
 import frc.robot.Constants;
@@ -33,10 +34,16 @@ public class Popup extends SubsystemBase {
 
   //Creating motors
   public TalonSRX pulleyTopMotor, pulleyBottomMotor;
+
+  public DigitalInput bottomLimit;
+  public DigitalInput topLimit;
   
   public Popup() {
     popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.pPopupUp_ID);
     popupDown = new Solenoid(RobotMap.PCM_B, RobotMap.pPopupDown_ID);
+
+    bottomLimit = new DigitalInput(1);
+    topLimit = new DigitalInput(2);
 
     pulleyTopMotor = new TalonSRX(RobotMap.mTopPulley_ID);
     pulleyBottomMotor = new TalonSRX(RobotMap.mBottomPulley_ID);
