@@ -50,6 +50,13 @@ public class Ramping extends CommandBase {
     if((Timer.getFPGATimestamp() - inittime) >= 2){
       falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.4);
     }
+    if((Timer.getFPGATimestamp() - inittime) >= 2.25){
+      falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.5);
+    }
+     
+    if((Timer.getFPGATimestamp() - inittime) >= 2.5){
+      falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.6);
+    } 
 
 /*     if((Timer.getFPGATimestamp() - inittime) >= 2.5){
       falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.5);
@@ -59,7 +66,7 @@ public class Ramping extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.5);
+    falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.62);
     Constants.shootState = Constants.doneRamping;
   }
 
