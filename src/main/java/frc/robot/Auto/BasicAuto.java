@@ -74,9 +74,9 @@ public class BasicAuto extends CommandBase {
 
     }  
 
-     if ((Timer.getFPGATimestamp() - inittime) >= 10){
-      driveTrain.NavX40deg();
-     }
+     //if ((Timer.getFPGATimestamp() - inittime) >= 10){
+      //driveTrain.NavX40deg();
+     //}
 
     //Timer.delay(1);
     //driveTrain.mDrive.arcadeDrive(0.0, 0.0);
@@ -118,6 +118,6 @@ public class BasicAuto extends CommandBase {
   @Override
   public boolean isFinished() {
     System.out.println("CHECK FINISH");
-    return (Timer.getFPGATimestamp() - inittime) >= 15 ;
+    return (Timer.getFPGATimestamp() - inittime) >= 10 ;
   }
 }
