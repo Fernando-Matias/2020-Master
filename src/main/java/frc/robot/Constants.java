@@ -165,6 +165,17 @@ public final class Constants {
     public static final int buttonYPressed2 = 1;
     public static int buttonYState = buttonYPressed2;
 
+    public static final int topBallLoaded = 0;
+    public static final int topBallUnloaded = 1;
+    public static int topLimitSwitch = topBallUnloaded;
+
+    public static final int bottomBallLoaded = 0;
+    public static final int bottomBallUnloaded = 1;
+    public static int bottomLimitSwitch = bottomBallUnloaded;
+
+    public static boolean WantBall = false;
+
+
     //difficult things
     public static double kTrackLengthInches = 8.265;
     public static double kTrackWidthInches = 23.8;

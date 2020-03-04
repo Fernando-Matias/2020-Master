@@ -95,6 +95,21 @@ public class Popup extends SubsystemBase {
     Constants.popupState = Constants.popupStateDown;
   }
 
+  public void UpdateLoadState() {
+    if (!topLimit.get()) {
+      Constants.topLimitSwitch = Constants.topBallLoaded;
+    }
+    else if (topLimit.get()) {
+      Constants.topLimitSwitch = Constants.topBallUnloaded;
+    }
+    if (!bottomLimit.get()) {
+      Constants.bottomLimitSwitch = Constants.bottomBallLoaded;
+    }
+    else if (bottomLimit.get()) {
+      Constants.bottomLimitSwitch = Constants.bottomBallUnloaded;
+    }
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
