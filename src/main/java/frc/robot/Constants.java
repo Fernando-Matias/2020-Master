@@ -235,7 +235,7 @@ public final class Constants {
     
 
     //PIDTurn
-    public static final double kTurn_P = 0.2;
+    public static final double kTurn_P = 0.00172;
     public static final double kTurn_I = 0;
     public static final double kTurn_D = 0;
     public static final double kToleranceDegrees = 2.0;
