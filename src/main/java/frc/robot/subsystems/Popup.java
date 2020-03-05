@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 
 import frc.robot.Constants;
@@ -33,10 +34,16 @@ public class Popup extends SubsystemBase {
 
   //Creating motors
   public TalonSRX pulleyTopMotor, pulleyBottomMotor;
+
+  public DigitalInput bottomLimit;
+  public DigitalInput topLimit;
   
   public Popup() {
     popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.pPopupUp_ID);
     popupDown = new Solenoid(RobotMap.PCM_B, RobotMap.pPopupDown_ID);
+
+    bottomLimit = new DigitalInput(3);
+    topLimit = new DigitalInput(2);
 
     pulleyTopMotor = new TalonSRX(RobotMap.mTopPulley_ID);
     pulleyBottomMotor = new TalonSRX(RobotMap.mBottomPulley_ID);
@@ -76,6 +83,13 @@ public class Popup extends SubsystemBase {
     Constants.TopPulleyState = Constants.TopPulleyStill;
   }
 
+  public void DownTopPulley(){
+    pulleyTopMotor.set(ControlMode.PercentOutput, -0.2);
+  }
+  public void DownBottomPulley(){
+    pulleyBottomMotor.set(ControlMode.PercentOutput, -0.2);
+  }
+
   public void PopUp() {
     popupUp.set(Constants.On);
     popupDown.set(Constants.Off);
@@ -88,6 +102,21 @@ public class Popup extends SubsystemBase {
     Constants.popupState = Constants.popupStateDown;
   }
 
+  public void UpdateLoadState() {
+    if (!topLimit.get()) {
+      Constants.topLimitSwitch = Constants.topBallLoaded;
+    }
+    else if (topLimit.get()) {
+      Constants.topLimitSwitch = Constants.topBallUnloaded;
+    }
+    if (!bottomLimit.get()) {
+      Constants.bottomLimitSwitch = Constants.bottomBallLoaded;
+    }
+    else if (bottomLimit.get()) {
+      Constants.bottomLimitSwitch = Constants.bottomBallUnloaded;
+    }
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

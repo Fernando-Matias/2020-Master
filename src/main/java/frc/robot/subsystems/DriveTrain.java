@@ -152,6 +152,7 @@ public class DriveTrain extends SubsystemBase {
     mDriveLeftB.setNeutralMode(NeutralMode.Brake);
     mDriveRightMaster.setNeutralMode(NeutralMode.Brake);
     mDriveRightB.setNeutralMode(NeutralMode.Brake);
+  
   }
   
   public void EnableVoltComp() {

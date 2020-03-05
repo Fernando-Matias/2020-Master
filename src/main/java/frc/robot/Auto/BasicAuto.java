@@ -73,9 +73,10 @@ public class BasicAuto extends CommandBase {
 
 
     }  
-    // if ((Timer.getFPGATimestamp() - inittime) >= 5.05){
-      
-    // }
+
+     //if ((Timer.getFPGATimestamp() - inittime) >= 10){
+      //driveTrain.NavX40deg();
+     //}
 
     //Timer.delay(1);
     //driveTrain.mDrive.arcadeDrive(0.0, 0.0);

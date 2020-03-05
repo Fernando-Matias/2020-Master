@@ -31,9 +31,9 @@ public class ShootingModeFar extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    popup.PopUp();
+    //popup.PopUp();
     turret.HoodOut();
-    Timer.delay(1);
+    //Timer.delay(1);
   }
 
   // Called once the command ends or is interrupted.
