@@ -25,6 +25,7 @@ public class PulleyAutomated extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Constants.ballsStaged = Constants.noBallStaged;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,10 +35,25 @@ public class PulleyAutomated extends CommandBase {
     if (Constants.topLimitSwitch == Constants.topBallLoaded && Constants.bottomLimitSwitch == Constants.bottomBallLoaded){
       popup.StopBottomPulley();
       popup.StopTopPulley();
+      Constants.ballsStaged = Constants.secondBallStaged;
     }
     else if(Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallLoaded){
       popup.UpTopPulley();
       popup.UpBottomPulley();
+    }
+    else if(Constants.topLimitSwitch == Constants.topBallLoaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded){
+      popup.DownBottomPulley();
+      popup.DownTopPulley();
+      Constants.ballsStaged = Constants.firstballStaged;
+    }
+    else if (Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded && Constants.ballsStaged == Constants.firstballStaged){
+       popup.StopBottomPulley();
+       popup.StopTopPulley();
+    }
+    else if(Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded){
+      popup.UpTopPulley();
+      popup.UpBottomPulley();
+
     }
   }
   
@@ -50,6 +66,12 @@ public class PulleyAutomated extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if (Constants.ballsStaged == Constants.secondBallStaged || Constants.ballsStaged == Constants.firstballStaged){
+      return true;
+    }
+    else {
+      return false;
+    }
+    
   }
 }

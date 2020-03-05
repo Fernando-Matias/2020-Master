@@ -42,7 +42,7 @@ public class Popup extends SubsystemBase {
     popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.pPopupUp_ID);
     popupDown = new Solenoid(RobotMap.PCM_B, RobotMap.pPopupDown_ID);
 
-    bottomLimit = new DigitalInput(1);
+    bottomLimit = new DigitalInput(3);
     topLimit = new DigitalInput(2);
 
     pulleyTopMotor = new TalonSRX(RobotMap.mTopPulley_ID);
@@ -81,6 +81,13 @@ public class Popup extends SubsystemBase {
   public void StopTopPulley() {
     pulleyTopMotor.set(ControlMode.PercentOutput, 0.0);
     Constants.TopPulleyState = Constants.TopPulleyStill;
+  }
+
+  public void DownTopPulley(){
+    pulleyTopMotor.set(ControlMode.PercentOutput, -0.2);
+  }
+  public void DownBottomPulley(){
+    pulleyBottomMotor.set(ControlMode.PercentOutput, -0.2);
   }
 
   public void PopUp() {

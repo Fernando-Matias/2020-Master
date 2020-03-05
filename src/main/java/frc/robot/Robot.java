@@ -167,6 +167,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    driveTrain.setCoast();
     popup.PopDown();
     intake.RetractIntake();
     driveTrain.UpShift();

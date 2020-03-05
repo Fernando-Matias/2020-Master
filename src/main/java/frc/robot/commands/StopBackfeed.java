@@ -7,19 +7,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Popup;
-import frc.robot.subsystems.Turret;
 
-public class ShootingModeNear extends CommandBase {
+public class StopBackfeed extends CommandBase {
   /**
-   * Creates a new ShootingModeNear.
+   * Creates a new StopBackfeed.
    */
-  Popup popup = Popup.getInstance();
-  Turret turret = Turret.getInstance();
 
-  public ShootingModeNear() {
+  Popup popup = Popup.getInstance();
+
+  public StopBackfeed() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -31,9 +29,8 @@ public class ShootingModeNear extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //popup.PopDown();
-    turret.HoodOut();
-    //Timer.delay(1);
+    popup.StopBottomPulley();
+    popup.StopTopPulley();
   }
 
   // Called once the command ends or is interrupted.
@@ -44,6 +41,6 @@ public class ShootingModeNear extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

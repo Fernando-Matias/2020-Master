@@ -175,6 +175,11 @@ public final class Constants {
 
     public static boolean WantBall = false;
 
+    public static final int firstballStaged = 0;
+    public static final int noBallStaged = 1;
+    public static final int secondBallStaged = 3;
+    public static int ballsStaged = noBallStaged;
+
 
     //difficult things
     public static double kTrackLengthInches = 8.265;

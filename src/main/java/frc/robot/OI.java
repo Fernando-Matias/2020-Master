@@ -44,16 +44,22 @@ public class OI {
       //Gamepad.getButtonY().whenHeld(new ClimberGoUp());
       //Gamepad.getButtonX().whenHeld(new ClimberGoDown());
       Gamepad.getButtonA().whenPressed(new IntakePowerCells());
+      //Gamepad.getButtonA().whenPressed(new PulleyAutomated());
       Gamepad.getButtonY().whenPressed(new SpinCPMTimed());
+      Gamepad.getButtonX().whenPressed(new Backfeed());
+      Gamepad.getButtonX().whenInactive(new StopBackfeed());
 
       //Gamepad.getButtonX().whenPressed(new ClimberGoUp());
       //Gamepad.getButtonX().whenInactive(new Climbstop());
 
       //Gamepad.getButtonB().whenPressed(new ClimberGoDown());
-      //Gamepad.getButtonB().whenInactive(new Climbstop());
+      //Gamepad.geotButtonB().whenInactive(new Climbstop());
 
       Gamepad.getLeftBumper().whenPressed(new BottomPulley());
-      Gamepad.getLeftBumper().whenInactive(new StopBottomPully());
+      Gamepad.getLeftBumper().whenInactive(new StopBottomPully());  
+      //Gamepad.getButtonBack().whenPressed(new ShootingModeFar());
+      //Gamepad.getButtonStart().whenPressed(new ShootingModeNear());
+    
       //Gamepad.getRightBumper().whenPressed(new TopPulley());
 
 
