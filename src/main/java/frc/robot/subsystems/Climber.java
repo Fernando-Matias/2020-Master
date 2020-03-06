@@ -15,6 +15,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 
+
+
+import edu.wpi.first.wpilibj.Servo;
+import frc.robot.Input.*;
+
 public class Climber extends SubsystemBase {
   /**
    * Creates a new Climber.
@@ -26,11 +31,18 @@ public class Climber extends SubsystemBase {
     return instance;
   }
 
+  //declaring servo name
+  public Servo letfServo;
+  public Servo rightServo;
+
   public TalonSRX ClimberMotor ;
 
 
   public Climber() {
     ClimberMotor = new TalonSRX(RobotMap.mClimberMotor_ID);
+
+    letfServo = new Servo(RobotMap.mTurretServo_ID);
+    rightServo = new Servo(RobotMap.mHoodServo_ID);
 
     ClimberMotor.configFactoryDefault();
     ClimberMotor.setNeutralMode(NeutralMode.Brake);
@@ -53,6 +65,19 @@ public class Climber extends SubsystemBase {
   public void ClimberGoDown() {
     ClimberMotor.set(ControlMode.PercentOutput, 0.6);
     Constants.climbState = Constants.pullingRobotUp;
+  }
+
+  public void ClimberInPosition(){
+    rightServo.setSpeed(0.5);
+    rightServo.set(0.0);
+    letfServo.setSpeed(0.5);
+    letfServo.set(0.0);
+  }
+  public void ClimberNotReady(){
+    rightServo.setSpeed(0.5);
+    rightServo.set(0.4);
+    letfServo.setSpeed(0.5);
+    letfServo.set(0.4);
   }
 
   @Override

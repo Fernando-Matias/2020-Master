@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 
-public class DriverBackOrientation extends CommandBase {
+public class ClimberModeOff extends CommandBase {
   /**
-   * Creates a new DriverBackOrientation.
+   * Creates a new DriverFrontOrientation.
    */
-  public DriverBackOrientation() {
+  public ClimberModeOff() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -26,7 +26,7 @@ public class DriverBackOrientation extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Constants.DriverOrientation = Constants.BackOrientation;
+    Constants.ClimbMode = Constants.ClimbModeOff;
   }
 
   // Called once the command ends or is interrupted.

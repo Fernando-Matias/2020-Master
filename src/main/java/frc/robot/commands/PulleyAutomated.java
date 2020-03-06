@@ -10,6 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Popup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Timer;
 
 public class PulleyAutomated extends CommandBase {
   /**
@@ -17,6 +19,8 @@ public class PulleyAutomated extends CommandBase {
    */
 
   Popup popup = Popup.getInstance();
+  Timer timer = new Timer();
+  double inittime;
 
   public PulleyAutomated() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -31,6 +35,8 @@ public class PulleyAutomated extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //popup.UpdateLoadState();
+    //popup.PulleyAuto();
     popup.UpdateLoadState();
     if (Constants.topLimitSwitch == Constants.topBallLoaded && Constants.bottomLimitSwitch == Constants.bottomBallLoaded){
       popup.StopBottomPulley();
@@ -38,21 +44,24 @@ public class PulleyAutomated extends CommandBase {
       Constants.ballsStaged = Constants.secondBallStaged;
     }
     else if(Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallLoaded){
-      popup.UpTopPulley();
-      popup.UpBottomPulley();
+      // popup.UpTopPulley();
+      // popup.UpBottomPulley();
+      popup.AutoPulleyUp();
     }
     else if(Constants.topLimitSwitch == Constants.topBallLoaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded){
-      popup.DownBottomPulley();
-      popup.DownTopPulley();
+      // popup.DownBottomPulley();
+      // popup.DownTopPulley();
+      popup.AutoPulleyDown();
       Constants.ballsStaged = Constants.firstballStaged;
     }
-    else if (Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded && Constants.ballsStaged == Constants.firstballStaged){
+/*     else if (Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded){
        popup.StopBottomPulley();
        popup.StopTopPulley();
-    }
+    } */
     else if(Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded){
-      popup.UpTopPulley();
-      popup.UpBottomPulley();
+      // popup.UpTopPulley();
+      // popup.UpBottomPulley();
+      popup.AutoPulleyUp();
 
     }
   }
@@ -66,7 +75,7 @@ public class PulleyAutomated extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Constants.ballsStaged == Constants.secondBallStaged || Constants.ballsStaged == Constants.firstballStaged){
+    if (Constants.ballsStaged == Constants.secondBallStaged ){ // || Constants.ballsStaged == Constants.firstballStaged
       return true;
     }
     else {

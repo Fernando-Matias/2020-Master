@@ -79,9 +79,9 @@ public final class Constants {
     public static int RampingState = RampingnotReset;
 
     //Orientation State 
-    public static final int FrontOrientation = 0;
-    public static final int BackOrientation = 1;
-    public static int DriverOrientation = FrontOrientation;
+    public static final int ClimbModeOff = 0;
+    public static final int ClimbModeOn = 1;
+    public static int ClimbMode = ClimbModeOff;
 
     //Manual or Auto Aiming State 
     public static final int TurretAimStateManual = 0;
@@ -157,9 +157,9 @@ public final class Constants {
     public static final int buttonBPressed2 = 1;
     public static int buttonBState = buttonBPressed2;
     
-    public static final int buttonXPressed = 0;
-    public static final int buttonXPressed2 = 1;
-    public static int buttonXState = buttonXPressed2;
+    public static final int triggerPressed = 0;
+    public static final int triggerNotPressed = 1;
+    public static int triggerState = triggerNotPressed;
     
     public static final int buttonYPressed = 0;
     public static final int buttonYPressed2 = 1;
@@ -175,8 +175,8 @@ public final class Constants {
 
     public static boolean WantBall = false;
 
-    public static final int firstballStaged = 0;
-    public static final int noBallStaged = 1;
+    public static final int firstballStaged = 1;
+    public static final int noBallStaged = 0;
     public static final int secondBallStaged = 3;
     public static int ballsStaged = noBallStaged;
 

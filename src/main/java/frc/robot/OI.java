@@ -9,6 +9,7 @@ package frc.robot;
 
 import frc.robot.Input.*;
 import frc.robot.commands.*;
+import frc.robot.subsystems.NeoShooter;
 
 /**
  * @author Fernando Matias
@@ -22,7 +23,8 @@ public class OI {
 
       //LeftStick.getButton2().whenPressed(new IntakePowerCells());
       //LeftStick.getButton3().whenPressed(new TargetOff());
-      LeftStick.getButton3().whenPressed(new DriverFrontOrientation());
+      Gamepad.getRightBumper().whenPressed(new ClimberModeOn());
+      Gamepad.getRightBumper().whenInactive(new ClimberModeOff());
       //LeftStick.getButton4().whenHeld(new BottomPulley());
       RightStick.getButtonTrigger().whenPressed(new TopPulley());
       RightStick.getButtonTrigger().whenInactive(new StopTopPulley());
@@ -32,11 +34,15 @@ public class OI {
       
       
 
-      RightStick.getButton2().whenPressed(new ManualPopup());
+      //RightStick.getButton2().whenPressed(new ManualPopup());
       //RightStick.getButton3().whenPressed(new Target());
       //RightStick.getButton4().whenHeld(new TopPulley());
-      RightStick.getButton3().whenPressed(new DriverBackOrientation());
+      //RightStick.getButton3().whenPressed(new DriverBackOrientation());
+      LeftStick.getButton11().whenPressed(new ClimberReady());
+      LeftStick.getButton10().whenPressed(new ClimberNotReady());
       LeftStick.getButtonTrigger().whenPressed(new Ramping());
+      //LeftStick.getButtonTrigger().whenPressed(new ShootPowerCell());
+      
       LeftStick.getButtonTrigger().whenInactive(new StopShootPowerCell());
 
       //Gamepad.getButtonBack().whenPressed(new AutoTurretMode());
@@ -44,7 +50,7 @@ public class OI {
       //Gamepad.getButtonY().whenHeld(new ClimberGoUp());
       //Gamepad.getButtonX().whenHeld(new ClimberGoDown());
       Gamepad.getButtonA().whenPressed(new IntakePowerCells());
-      //Gamepad.getButtonA().whenPressed(new PulleyAutomated());
+      //Gamepad.getRightBumper().whenPressed(new PulleyAutomated());
       Gamepad.getButtonY().whenPressed(new SpinCPMTimed());
       Gamepad.getButtonX().whenPressed(new Backfeed());
       Gamepad.getButtonX().whenInactive(new StopBackfeed());
@@ -65,6 +71,20 @@ public class OI {
 
     }
 
+    public static double controllerThrottleInput(){
+      return Gamepad.getLeftY();
+    }
+    public static double controllerSteeringInput(){
+      return Gamepad.getRightX();
+    }
+    public static double controllerThrottleInputInverted(){
+      return Gamepad.getLeftYAxisInverted();
+    }
+    public static double controllerSteeringInputInverted(){
+      return Gamepad.getRightXAxisInverted();
+    }
+
+    
     public static double getLeftThrottleInput() {
       return LeftStick.getYAxis();
     }

@@ -8,10 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.NeoShooter;
 import frc.robot.subsystems.FalconShooter;
 import frc.robot.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import frc.robot.subsystems.Popup;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -20,7 +22,9 @@ public class Ramping extends CommandBase {
    * Creates a new Ramping.
    */
   Timer timer = new Timer();
-  FalconShooter falconShooter = new FalconShooter();
+  NeoShooter neoShooter = NeoShooter.getInstance();
+  FalconShooter falconShooter = FalconShooter.getInstance();
+  Popup popup = Popup.getInstance();
   double inittime;
   public Ramping() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -30,26 +34,37 @@ public class Ramping extends CommandBase {
   @Override
   public void initialize() {
     inittime = Timer.getFPGATimestamp();
+    Constants.triggerState = Constants.triggerPressed;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if((Timer.getFPGATimestamp() - inittime) >= .5){
-      falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.1);
+    if (Constants.triggerState == Constants.triggerPressed){
+      popup.PopUp();
+      if((Timer.getFPGATimestamp() - inittime) >= .5){
+        falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.1);
+        //neoShooter.NeoShooter.set(-.2);
+      }
+  
+      if((Timer.getFPGATimestamp() - inittime) >= 1){
+        falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.2);
+        //neoShooter.NeoShooter.set(-.4);
+      }
+  
+      if((Timer.getFPGATimestamp() - inittime) >= 1.5){
+        falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.3);
+        //neoShooter.NeoShooter.set(-0.6);
+      }
+  
+      if((Timer.getFPGATimestamp() - inittime) >= 2){
+        falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.4);
+        //neoShooter.NeoShooter.set(-0.8);
+      }
     }
 
-    if((Timer.getFPGATimestamp() - inittime) >= 1){
-      falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.2);
-    }
 
-    if((Timer.getFPGATimestamp() - inittime) >= 1.5){
-      falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.3);
-    }
 
-    if((Timer.getFPGATimestamp() - inittime) >= 2){
-      falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.4);
-    }
     // if((Timer.getFPGATimestamp() - inittime) >= 2.25){
     //   falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.5);
     // }
@@ -66,6 +81,7 @@ public class Ramping extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //neoShooter.NeoShooter.set(-0.8);
     falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.45);
     Constants.shootState = Constants.doneRamping;
   }
@@ -74,6 +90,12 @@ public class Ramping extends CommandBase {
   @Override
   public boolean isFinished() {
     System.out.println("CHECK FINISH");
-    return (Timer.getFPGATimestamp() - inittime) >= 2.25;
+    if (Constants.triggerState == Constants.triggerPressed || (Timer.getFPGATimestamp() - inittime) >= 2.25){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
+
 }

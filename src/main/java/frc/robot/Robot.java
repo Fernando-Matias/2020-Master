@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -25,6 +26,7 @@ import frc.robot.Input.*;
 import frc.robot.Constants;
 
 import frc.robot.OI;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ControlPanelManipulator;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.Constants;
@@ -64,6 +66,8 @@ public class Robot extends TimedRobot {
   ControlPanelManipulator cpm = ControlPanelManipulator.GetInstance();
   AutoPaths paths = AutoPaths.getInstance();
 
+  Climber climber = Climber.getInstance();
+
   Command autonomousCommand;
   SendableChooser<Command> autoProgram = new SendableChooser<>();
   Turret turret = Turret.getInstance();
@@ -92,6 +96,8 @@ public class Robot extends TimedRobot {
 
     autoProgram.setDefaultOption("basic", new BasicAuto());
 
+    CameraServer.getInstance().startAutomaticCapture();
+
     SmartDashboard.putData("Selected Auto", autoProgram);
 
   }
@@ -113,7 +119,18 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     //limelight.LimelightOutput();
     driveTrain.NavXOutput();
+    popup.UpdateLoadState();
 
+    // Creates UsbCamera and MjpegServer [1] and connects them
+    //CameraServer.getInstance().startAutomaticCapture();
+
+    // Creates the CvSink and connects it to the UsbCamera
+    //CvSink cvSink = CameraServer.getInstance().getVideo();
+
+    // Creates the CvSource and MjpegServer [2] and connects them
+    //CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
+
+    
     //CameraServer.getInstance().startAutomaticCapture();
     //CvSink cvSink = CameraServer.getInstance().getVideo();
     //CvSource outputStream = CameraServer.getInstance().putVideo("blur", 640, 480);
@@ -172,7 +189,7 @@ public class Robot extends TimedRobot {
     intake.RetractIntake();
     driveTrain.UpShift();
     cpm.StopSpinControlPanel();
-    Constants.DriverOrientation = Constants.FrontOrientation;
+    Constants.ClimbMode = Constants.ClimbModeOff;
     turret.TurretStayStill();
 
   }
@@ -183,14 +200,15 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
         // Driver Orientation
-    
-     if (Constants.DriverOrientation == Constants.FrontOrientation) {
-      driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
+        driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
 
+/*     
+      if (Constants.DriverOrientation == Constants.FrontOrientation) {
+      
     }
     else if (Constants.DriverOrientation == Constants.BackOrientation) {
       driveTrain.Curvature(OI.getLeftThrottleInputInverted(), OI.getRightSteeringInputInverted());
-    }
+    } */
 
     //turret.UseManualInput();
 
@@ -205,7 +223,12 @@ public class Robot extends TimedRobot {
 
     //driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
 
+    if (Constants.climbState == Constants.climbResting){
+      climber.ClimberMotor.set(ControlMode.PercentOutput, OI.controllerThrottleInputInverted());
     }
+    
+
+    } 
   
 
   @Override

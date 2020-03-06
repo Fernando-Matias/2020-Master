@@ -40,21 +40,31 @@ public class LogitechController extends Joystick{
     }
 
     //Axes
-    public double getLeftXAxis(){
+    public double getLeftX() {
         return getRawAxis(0);
     }
-
-    public double getLeftYAxis(){
+    public double getLeftY() {
         return getRawAxis(1);
     }
-
-    public double getRightXAxis(){
+    public double getRightX() {
         return getRawAxis(4);
     }
-
-    public double getRightYAxis(){
+    public double getRightY() {
         return getRawAxis(5);
     }
+    public double getLeftXAxisInverted() { 
+        return -this.getRawAxis(0); 
+    } 
+    public double getLeftYAxisInverted() { 
+        return -this.getRawAxis(1); 
+    } 
+
+    public double getRightXAxisInverted() { 
+        return -this.getRawAxis(4); 
+    } 
+    public double getRightYAxisInverted() { 
+        return -this.getRawAxis(5); 
+    } 
     
     //buttons
     public Button getButtonA(){

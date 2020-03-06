@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Turret;
 import frc.robot.Constants;
@@ -20,6 +20,7 @@ public class Target extends CommandBase {
 
   Limelight limelight = Limelight.getInstance();
   Turret turret = Turret.GetInstance();
+  DriveTrain driveTrain = DriveTrain.getInstance();
 
   public Target() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -35,10 +36,12 @@ public class Target extends CommandBase {
   public void execute() {
     if(Constants.trackState == Constants.trackOFF){
       limelight.setOn();
+      driveTrain.setBrake();
+      limelight.SteeringAdjust();
     }
       
     
-
+/* 
     if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0 && Constants.TurretAimState == Constants.TurretAimStateAuto){
       turret.turretLeftTurn();
     }
@@ -49,7 +52,7 @@ public class Target extends CommandBase {
     if (limelight.getXOffsetFromTarget() > 1.0 && limelight.getXOffsetFromTarget() < 1.0 && limelight.getLimelightTarget() == 1){
       Constants.rightSide = Constants.rightSideGood;
       Constants.leftSide = Constants.leftSideGood;
-    }
+    } */
 
   }
 
@@ -61,7 +64,7 @@ public class Target extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Constants.leftSide == Constants.leftSideGood && Constants.rightSide == Constants.rightSideGood && Constants.trackState == Constants.trackOFF){
+    if (Constants.trackState == Constants.trackOFF){
       return true;
     }
     else{

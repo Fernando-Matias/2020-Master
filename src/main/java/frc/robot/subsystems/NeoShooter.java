@@ -22,10 +22,16 @@ import frc.robot.RobotMap;
 
 public class NeoShooter extends SubsystemBase {
 
-  private CANSparkMax NeoShooter;
+  public CANSparkMax NeoShooter;
   private CANPIDController PIDController;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
 
+
+  private static final NeoShooter instance = new NeoShooter();
+
+  public static NeoShooter getInstance() {
+    return instance;
+  }
 
   public NeoShooter() {
 
@@ -34,7 +40,7 @@ public class NeoShooter extends SubsystemBase {
 
   }
   public void NeoShoot() {
-    NeoShooter.set(-0.80);
+    NeoShooter.set(-.80);
     //Constants.neoShooterState = Constants.neoShooterSpin;
   }
   public void NeoNoShoot() {

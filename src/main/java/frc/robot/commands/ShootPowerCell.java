@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.FalconShooter;
+import frc.robot.subsystems.NeoShooter;
 import frc.robot.Constants;
 
 public class ShootPowerCell extends CommandBase {
@@ -18,6 +19,7 @@ public class ShootPowerCell extends CommandBase {
    */
 
   FalconShooter falconShooter = FalconShooter.getInstance();
+  NeoShooter neoShooter = NeoShooter.getInstance();
 
   public ShootPowerCell() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -32,10 +34,11 @@ public class ShootPowerCell extends CommandBase {
   @Override
   public void execute() {
  /*     if (Constants.RampingState == Constants.RampingnotReset) { */
-      falconShooter.RampingSequence();
+      //falconShooter.RampingSequence();
 
      // Timer.delay(2.5);
-      falconShooter.ShootPowerCell();
+      //falconShooter.ShootPowerCell();
+      neoShooter.NeoShoot();
       Constants.shootState = Constants.doneRamping;
 /*       Constants.RampingState = Constants.RampingReset;
     }

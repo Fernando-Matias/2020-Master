@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
 
@@ -64,18 +64,27 @@ public class Popup extends SubsystemBase {
   }
 
   public void UpBottomPulley(){
-    pulleyBottomMotor.set(ControlMode.PercentOutput, 0.5);
-    Constants.bottomPulleyState = Constants.bottomPulleySpinning;
+    pulleyBottomMotor.set(ControlMode.PercentOutput, 0.4);
+    //Constants.bottomPulleyState = Constants.bottomPulleySpinning;
   }
 
   public void StopBottomPulley(){
     pulleyBottomMotor.set(ControlMode.PercentOutput, 0.0);
-    Constants.bottomPulleyState = Constants.bottomPulleyStill;
+    //Constants.bottomPulleyState = Constants.bottomPulleyStill;
   }
   
   public void UpTopPulley(){
     pulleyTopMotor.set(ControlMode.PercentOutput, 0.5);
-    Constants.TopPulleyState = Constants.TopPulleySpinning;
+    //Constants.TopPulleyState = Constants.TopPulleySpinning;
+  }
+
+  public void AutoPulleyUp(){
+    pulleyTopMotor.set(ControlMode.PercentOutput, 0.1);
+    pulleyTopMotor.set(ControlMode.PercentOutput, 0.1);
+  }
+  public void AutoPulleyDown (){
+    pulleyTopMotor.set(ControlMode.PercentOutput, -0.1);
+    pulleyTopMotor.set(ControlMode.PercentOutput, -0.1);
   }
 
   public void StopTopPulley() {
@@ -105,15 +114,49 @@ public class Popup extends SubsystemBase {
   public void UpdateLoadState() {
     if (!topLimit.get()) {
       Constants.topLimitSwitch = Constants.topBallLoaded;
+      SmartDashboard.putNumber("topLimitSwitch", Constants.topLimitSwitch);
+      
     }
     else if (topLimit.get()) {
       Constants.topLimitSwitch = Constants.topBallUnloaded;
+      SmartDashboard.putNumber("topLimitSwitch", Constants.topLimitSwitch);
     }
     if (!bottomLimit.get()) {
       Constants.bottomLimitSwitch = Constants.bottomBallLoaded;
+      SmartDashboard.putNumber("BottomLimitSwitch", Constants.bottomLimitSwitch);
     }
     else if (bottomLimit.get()) {
       Constants.bottomLimitSwitch = Constants.bottomBallUnloaded;
+      SmartDashboard.putNumber("BottomLimitSwitch", Constants.bottomLimitSwitch);
+    }
+  }
+  public void PulleyAuto(){
+    if (Constants.topLimitSwitch == Constants.topBallLoaded && Constants.bottomLimitSwitch == Constants.bottomBallLoaded){
+      StopBottomPulley();
+      StopTopPulley();
+      Constants.ballsStaged = Constants.secondBallStaged;
+      SmartDashboard.putNumber("balls staged", Constants.ballsStaged);
+    }
+    if(Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallLoaded){
+      UpTopPulley();
+      UpBottomPulley();
+      
+    }
+    if(Constants.topLimitSwitch == Constants.topBallLoaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded ){ //&& Constants.ballsStaged == Constants.noBallStaged
+      DownBottomPulley();
+      DownTopPulley();
+      Constants.ballsStaged = Constants.firstballStaged;
+      SmartDashboard.putNumber("balls staged", Constants.ballsStaged);
+    }
+/*     if (Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded && Constants.ballsStaged == Constants.firstballStaged){
+      Constants.ballsStaged = Constants.firstballStaged;
+       popup.StopBottomPulley();
+       popup.StopTopPulley();
+    } */
+    if(Constants.topLimitSwitch == Constants.topBallUnloaded && Constants.bottomLimitSwitch == Constants.bottomBallUnloaded){
+      UpTopPulley();
+      UpBottomPulley();
+
     }
   }
   

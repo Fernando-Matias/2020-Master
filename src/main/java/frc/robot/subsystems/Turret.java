@@ -11,7 +11,7 @@ import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Servo;
-import frc.robot.Input.LogitechController;
+//import frc.robot.Input.LogitechController;
 import frc.robot.Constants;
 
 public class Turret extends SubsystemBase {
@@ -19,7 +19,7 @@ public class Turret extends SubsystemBase {
   //calling limelight Class
   //Limelight limelight = Limelight.getInstance();
   //creating Turret Class
-  private static final LogitechController Gamepad = new LogitechController(RobotMap.mGamepadPort);
+  //private static final LogitechController Gamepad = new LogitechController(RobotMap.mGamepadPort);
   private static final Turret instance = new Turret();
   
 
@@ -65,7 +65,7 @@ public class Turret extends SubsystemBase {
     HoodServo.set(0.0);
   }
 
-  public void UseManualInput() {
+/*   public void UseManualInput() {
     if ( Gamepad.getRightXAxis()  >= -0.25 && Gamepad.getRightXAxis() <= 0.25 ){
       TurretServo.set(0.5);
      }
@@ -80,15 +80,15 @@ public class Turret extends SubsystemBase {
     }
     else if (Gamepad.getRightYAxis() < 0) {
       HoodServo.set(0.0);
-    }
-    }  
+    } */
+    //}  
 
   
 
   }
  // deadband
 
-}
+//}
 
   
 

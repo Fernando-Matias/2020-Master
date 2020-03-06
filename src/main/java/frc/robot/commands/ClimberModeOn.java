@@ -9,19 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.DriveTrain;
 
-public class TargetOff extends CommandBase {
+public class ClimberModeOn extends CommandBase {
   /**
-   * Creates a new TargetOff.
+   * Creates a new DriverBackOrientation.
    */
-
-  Limelight limelight = Limelight.getInstance();
-  DriveTrain driveTrain = DriveTrain.getInstance();
-
-  
-  public TargetOff() {
+  public ClimberModeOn() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -33,11 +26,7 @@ public class TargetOff extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Constants.trackState == Constants.trackON){
-      limelight.setOff();
-      Constants.trackState = Constants.trackOFF;
-      driveTrain.setCoast();
-    }
+    Constants.ClimbMode = Constants.ClimbModeOn;
   }
 
   // Called once the command ends or is interrupted.
@@ -48,6 +37,8 @@ public class TargetOff extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+
     return true;
+    
   }
 }

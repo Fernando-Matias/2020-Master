@@ -21,52 +21,60 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
   public static Limelight getInstance() {
     return instance;
   }
+  double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+  double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+  double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+  double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
 
-  
+  public double kp = -0.1f;
+  public double minCommand = 0.05f; 
+
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-  NetworkTableEntry tx;
+/*   NetworkTableEntry tx;
   NetworkTableEntry ty;
   NetworkTableEntry ta;
-  NetworkTableEntry tv;
+  NetworkTableEntry tv; */
   NetworkTableEntry ts;
   NetworkTableEntry pipeline;
   NetworkTableEntry ledMode;
   NetworkTableEntry camMode;
 
-  public Limelight() {
-    tx = table.getEntry("tx");
-    ty = table.getEntry("ty");
-    ta = table.getEntry("ta");
-    tv = table.getEntry("tv");
-    ts = table.getEntry("ts");
-    pipeline = table.getEntry("pipeline");
-    camMode = table.getEntry("camMode");
-    ledMode = table.getEntry("ledMode");
+  public boolean m_LimelightHasValidTarget = false;
 
-    pipeline.setValue(1);
-    camMode.setValue(1);
+  // public Limelight() {
+  //   tx = table.getEntry("tx");
+  //   ty = table.getEntry("ty");
+  //   ta = table.getEntry("ta");
+  //   tv = table.getEntry("tv");
+  //   ts = table.getEntry("ts");
+  //   pipeline = table.getEntry("pipeline");
+  //   camMode = table.getEntry("camMode");
+  //   ledMode = table.getEntry("ledMode");
 
-  }
+  //   pipeline.setValue(1);
+  //   camMode.setValue(1);
 
-  public double getLimelightTarget(){
-    double v = tv.getDouble(0.0);
-    return v;
-  }
+  // }
 
-  public double getXOffsetFromTarget() {
-    double x = tx.getDouble(0.0);
-    return x;
-  }
+  // public double getLimelightTarget(){
+  //   double v = tv.getDouble(0.0);
+  //   return v;
+  // }
 
-  public double getYOffsetFromTarget() {
-    double y = ty.getDouble(0.0);
-    return y;
-  }
+  // public double getXOffsetFromTarget() {
+  //   double x = tx.getDouble(0.0);
+  //   return x;
+  // }
 
-  public double getTargetArea() {
-    double area = ta.getDouble(0.0);
-    return area;
-  }
+  // public double getYOffsetFromTarget() {
+  //   double y = ty.getDouble(0.0);
+  //   return y;
+  // }
+
+  // public double getTargetArea() {
+  //   double area = ta.getDouble(0.0);
+  //   return area;
+  // }
 
   public double getTargetAngle(){
     double skew = ts.getDouble(0.0);
@@ -85,11 +93,40 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
     ledMode.setNumber(1);
   }
 
-  public void LimelightOutput() {
+/*   public void LimelightOutput() {
     SmartDashboard.putNumber("Limelight X", getXOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Y", getYOffsetFromTarget());
     SmartDashboard.putNumber("Limelight Area", getTargetArea());
     SmartDashboard.putNumber("ValidTarget", getLimelightTarget());
+  } */
+  public void UpdateLimelightTraking () {
+
+    if (tv == 1.0) {
+      m_LimelightHasValidTarget = true;
+      // m_LimelightDriveCommand = 0.0;
+      // m_LimelightSteerCommand = 0.0;
+      return;
+    } else {
+      m_LimelightHasValidTarget = false;
+    }
+  }
+
+  public void SteeringAdjust() {
+
+    double heading_error = tx;
+    double steeringAdjust = 0.0f;
+
+    if (tx > 1.0){
+      steeringAdjust = kp*heading_error - minCommand;
+      //m_LimelightTurnSuccess = true;
+    } 
+    else if (tx < 1.0){
+      steeringAdjust = kp*heading_error + minCommand;
+    }
+
+    double leftCommand =+ steeringAdjust;
+    double rightCommand =- steeringAdjust;
+    DriveTrain.mDrive.tankDrive(leftCommand, rightCommand);
   }
   
   @Override

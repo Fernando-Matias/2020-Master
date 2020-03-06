@@ -8,13 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.DriveTrain;
 
-public class DriverFrontOrientation extends CommandBase {
+public class ClimberReady extends CommandBase {
   /**
-   * Creates a new DriverFrontOrientation.
+   * Creates a new ClimberReady.
    */
-  public DriverFrontOrientation() {
+
+  Climber climber = Climber.getInstance();
+  DriveTrain driveTrain = DriveTrain.getInstance();
+
+  public ClimberReady() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -26,7 +31,9 @@ public class DriverFrontOrientation extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Constants.DriverOrientation = Constants.FrontOrientation;
+
+    climber.ClimberInPosition();
+    driveTrain.setBrake();
   }
 
   // Called once the command ends or is interrupted.
@@ -37,8 +44,6 @@ public class DriverFrontOrientation extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
     return true;
-    
   }
 }
