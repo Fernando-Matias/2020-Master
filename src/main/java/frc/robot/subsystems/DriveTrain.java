@@ -15,9 +15,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpiutil.math.MathUtil;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -47,6 +49,7 @@ public class DriveTrain extends SubsystemBase {
   public static WPI_TalonFX mDriveLeftMaster, mDriveLeftB;
   public static WPI_TalonFX mDriveRightMaster, mDriveRightB;
   private static Solenoid mShifter_High, mShifter_Low;
+  private static Solenoid mShiftOn, mShiftOff;
 
   private double TurnrateCurved, mLastHeadingErrorDegrees, leftvelo_,  rightvelo_, left_distance, right_distance, time;
 
@@ -101,6 +104,8 @@ public class DriveTrain extends SubsystemBase {
   //Setting Shifter varibales 
   mShifter_Low = new Solenoid(RobotMap.PCM_A, RobotMap.pShiftLow_ID);
   mShifter_High = new Solenoid(RobotMap.PCM_B, RobotMap.pShiftHigh_ID);
+  mShiftOn = new Solenoid(1, 4);
+  mShiftOff = new Solenoid(2, 3);
 
   //NavX AHRS
   ahrs = new AHRS(SerialPort.Port.kMXP);
@@ -132,6 +137,16 @@ public class DriveTrain extends SubsystemBase {
     mShifter_Low.set(Constants.On);
     Constants.currentGear = Constants.lowGear;
   } 
+
+  public void ClimberShifterOn(){
+    mShiftOn.set(Constants.On);
+    mShiftOff.set(Constants.Off);
+  }
+
+  public void ClimberShifterOff(){
+    mShiftOn.set(Constants.Off);
+    mShiftOff.set(Constants.On);
+  }
   
   public double GetLeftEncoderValue() {
     return mDriveLeftMaster.getSelectedSensorPosition(0);

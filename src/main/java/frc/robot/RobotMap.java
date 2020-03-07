@@ -31,8 +31,8 @@ public class RobotMap {
     public static final int mClimberMotor_ID = 11;
 
     //Servo IDS
-    public static final int mTurretServo_ID = 0;
-    public static final int mHoodServo_ID = 1;
+    public static final int mTurretServo_ID = 2;
+    public static final int mHoodServo_ID = 4;
 
     //Controls
     public static final int mLeftStickPort = 0;

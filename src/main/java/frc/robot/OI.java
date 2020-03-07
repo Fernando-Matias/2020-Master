@@ -22,7 +22,7 @@ public class OI {
     public static void registerControls(){
 
       //LeftStick.getButton2().whenPressed(new IntakePowerCells());
-      //LeftStick.getButton3().whenPressed(new TargetOff());
+      LeftStick.getButton3().whenPressed(new TargetOff());
       Gamepad.getRightBumper().whenPressed(new ClimberModeOn());
       Gamepad.getRightBumper().whenInactive(new ClimberModeOff());
       //LeftStick.getButton4().whenHeld(new BottomPulley());
@@ -31,11 +31,13 @@ public class OI {
 
       RightStick.getButton4().whenPressed(new ShiftLow());
       RightStick.getButton4().whenInactive(new ShiftHigh());
+      RightStick.getButton6().whenPressed(new ptoEngaged());
+      RightStick.getButton7().whenPressed(new ptoOff());
       
       
 
       //RightStick.getButton2().whenPressed(new ManualPopup());
-      //RightStick.getButton3().whenPressed(new Target());
+      RightStick.getButton3().whenPressed(new Target());
       //RightStick.getButton4().whenHeld(new TopPulley());
       //RightStick.getButton3().whenPressed(new DriverBackOrientation());
       LeftStick.getButton11().whenPressed(new ClimberReady());
@@ -50,7 +52,7 @@ public class OI {
       //Gamepad.getButtonY().whenHeld(new ClimberGoUp());
       //Gamepad.getButtonX().whenHeld(new ClimberGoDown());
       Gamepad.getButtonA().whenPressed(new IntakePowerCells());
-      //Gamepad.getRightBumper().whenPressed(new PulleyAutomated());
+      //Gamepad.getButtonA().whenPressed(new PulleyAutomated());
       Gamepad.getButtonY().whenPressed(new SpinCPMTimed());
       Gamepad.getButtonX().whenPressed(new Backfeed());
       Gamepad.getButtonX().whenInactive(new StopBackfeed());

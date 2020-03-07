@@ -128,6 +128,14 @@ public final class Constants {
     public static final int bottomPulleyStill = 0;
     public static final int bottomPulleySpinning = 1;
     public static int bottomPulleyState = bottomPulleyStill;
+
+    public static final int autopulley = 0;
+    public static final int manualPulley = 1;
+    public static int pulleystate = manualPulley;
+
+    public static final int flashlightOn = 0;
+    public static final int flashlightOff = 1;
+    public static int flashlightMode = flashlightOff;
     
     public static final int TopPulleySpinning = 0;
     public static final int TopPulleyStill = 1;

@@ -42,25 +42,42 @@ public class Ramping extends CommandBase {
   public void execute() {
     if (Constants.triggerState == Constants.triggerPressed){
       popup.PopUp();
+      if (Constants.flashlightMode == Constants.flashlightOff){
+        popup.FlashlightOn();
+      }
+      
       if((Timer.getFPGATimestamp() - inittime) >= .5){
         falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.1);
         //neoShooter.NeoShooter.set(-.2);
       }
   
-      if((Timer.getFPGATimestamp() - inittime) >= 1){
+      if((Timer.getFPGATimestamp() - inittime) >= .75){
         falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.2);
         //neoShooter.NeoShooter.set(-.4);
       }
   
-      if((Timer.getFPGATimestamp() - inittime) >= 1.5){
+      if((Timer.getFPGATimestamp() - inittime) >= 1){
         falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.3);
         //neoShooter.NeoShooter.set(-0.6);
       }
   
-      if((Timer.getFPGATimestamp() - inittime) >= 2){
+      if((Timer.getFPGATimestamp() - inittime) >= 1.25){
         falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.4);
         //neoShooter.NeoShooter.set(-0.8);
       }
+      if((Timer.getFPGATimestamp() - inittime) >= 1.5){
+        falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.5);
+        //neoShooter.NeoShooter.set(-0.8);
+      }
+      // if((Timer.getFPGATimestamp() - inittime) >= 1.75){
+      //   falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.6);
+      //   //neoShooter.NeoShooter.set(-0.8);
+      // }
+      // if((Timer.getFPGATimestamp() - inittime) >= 2){
+      //   falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.7);
+      //   //neoShooter.NeoShooter.set(-0.8);
+      // }
+
     }
 
 
@@ -82,7 +99,7 @@ public class Ramping extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     //neoShooter.NeoShooter.set(-0.8);
-    falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.45);
+    falconShooter.falconShooter.set(ControlMode.PercentOutput, 0.55);
     Constants.shootState = Constants.doneRamping;
   }
 
@@ -90,7 +107,7 @@ public class Ramping extends CommandBase {
   @Override
   public boolean isFinished() {
     System.out.println("CHECK FINISH");
-    if (Constants.triggerState == Constants.triggerPressed || (Timer.getFPGATimestamp() - inittime) >= 2.25){
+    if (Constants.triggerState == Constants.triggerPressed || (Timer.getFPGATimestamp() - inittime) >= 1.75){ //Constants.triggerState == Constants.triggerPressed || 
       return true;
     }
     else {

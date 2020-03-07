@@ -41,6 +41,12 @@ public class Turret extends SubsystemBase {
     HoodServo = new Servo(RobotMap.mHoodServo_ID);
   } 
 
+  public void turretSetSpeed(double speed){
+    double newSpeed  = (speed + 1.0)* .5;
+    TurretServo.setSpeed(1.0);
+    turretSetSpeed(newSpeed);
+  }
+
   public void turretRightTurn(){
     TurretServo.setSpeed(1.0);
     TurretServo.set(0.0);
@@ -51,12 +57,12 @@ public class Turret extends SubsystemBase {
   }
 
   public void turretLeftTurn(){
-    TurretServo.setSpeed(0.0);
-    TurretServo.set(1.0);
+    TurretServo.setSpeed(1.0);
+    TurretServo.set(0.0);
   }
 
   public void HoodOut(){
-    HoodServo.setSpeed(0.0);
+    HoodServo.setSpeed(1.0);
     HoodServo.set(1.0);
   }
 

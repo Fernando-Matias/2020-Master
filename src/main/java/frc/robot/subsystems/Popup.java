@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Relay.Value;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -37,6 +39,7 @@ public class Popup extends SubsystemBase {
 
   public DigitalInput bottomLimit;
   public DigitalInput topLimit;
+  public Relay lightRelay;
   
   public Popup() {
     popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.pPopupUp_ID);
@@ -45,8 +48,11 @@ public class Popup extends SubsystemBase {
     bottomLimit = new DigitalInput(3);
     topLimit = new DigitalInput(2);
 
+    
+
     pulleyTopMotor = new TalonSRX(RobotMap.mTopPulley_ID);
     pulleyBottomMotor = new TalonSRX(RobotMap.mBottomPulley_ID);
+    lightRelay = new Relay(0);
 
     pulleyTopMotor.configFactoryDefault();
     pulleyTopMotor.setNeutralMode(NeutralMode.Brake);
@@ -110,6 +116,16 @@ public class Popup extends SubsystemBase {
     popupDown.set(Constants.On);
     Constants.popupState = Constants.popupStateDown;
   }
+
+  public void FlashlightOn(){
+    lightRelay.set(Value.kForward);
+    Constants.flashlightMode = Constants.flashlightOn;
+  }
+  public void FalshlighOff(){
+    lightRelay.set(Value.kOff);
+    Constants.flashlightMode = Constants.flashlightOff;
+  }
+  
 
   public void UpdateLoadState() {
     if (!topLimit.get()) {

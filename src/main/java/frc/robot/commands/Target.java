@@ -37,22 +37,25 @@ public class Target extends CommandBase {
     if(Constants.trackState == Constants.trackOFF){
       limelight.setOn();
       driveTrain.setBrake();
-      limelight.SteeringAdjust();
+      //limelight.SteeringAdjust();
     }
       
-    
-/* 
-    if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0 && Constants.TurretAimState == Constants.TurretAimStateAuto){
-      turret.turretLeftTurn();
+    if (limelight.getLimelightTarget() == 1){
+      double kp = .1;
+      turret.turretSetSpeed(limelight.getXOffsetFromTarget()*kp);
     }
-    if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() < 1.0){
-      turret.turretRightTurn();
-    }
+ 
+    // if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0 && Constants.TurretAimState == Constants.TurretAimStateAuto){
+    //   turret.turretLeftTurn();
+    // }
+    // if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() < 1.0){
+    //   turret.turretRightTurn();
+    // }
 
-    if (limelight.getXOffsetFromTarget() > 1.0 && limelight.getXOffsetFromTarget() < 1.0 && limelight.getLimelightTarget() == 1){
-      Constants.rightSide = Constants.rightSideGood;
-      Constants.leftSide = Constants.leftSideGood;
-    } */
+    // if (limelight.getXOffsetFromTarget() > 1.0 && limelight.getXOffsetFromTarget() < 1.0 && limelight.getLimelightTarget() == 1){
+    //   Constants.rightSide = Constants.rightSideGood;
+    //   Constants.leftSide = Constants.leftSideGood;
+    // } 
 
   }
 
@@ -64,11 +67,12 @@ public class Target extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Constants.trackState == Constants.trackOFF){
-      return true;
-    }
-    else{
-      return false;
-    }
+    // if (Constants.trackState == Constants.trackOFF){
+    //   return true;
+    // }
+    // else{
+    //   return false;
+    // }
+    return false;
   }
 }

@@ -11,10 +11,12 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpiutil.net.PortForwarder;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.cscore.CvSink;
@@ -29,6 +31,7 @@ import frc.robot.OI;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ControlPanelManipulator;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.FalconShooter;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Popup;
@@ -38,7 +41,7 @@ import frc.robot.Auto.AutoCommands.*;
 import frc.robot.Auto.AutoPaths;
 import frc.robot.Auto.BasicAuto;
 import frc.robot.subsystems.Turret;
-//import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Limelight;
 
 
 /**
@@ -59,7 +62,7 @@ public class Robot extends TimedRobot {
 
   
 
-  //Limelight limelight = Limelight.getInstance();
+  Limelight limelight = Limelight.getInstance();
   Popup popup = Popup.getInstance();
   Intake intake = Intake.getInstance();
   DriveTrain driveTrain = DriveTrain.getInstance();
@@ -67,12 +70,14 @@ public class Robot extends TimedRobot {
   AutoPaths paths = AutoPaths.getInstance();
 
   Climber climber = Climber.getInstance();
+  FalconShooter falconShooter = FalconShooter.getInstance();
 
   Command autonomousCommand;
   SendableChooser<Command> autoProgram = new SendableChooser<>();
   Turret turret = Turret.getInstance();
 
   //private RobotContainer m_robotContainer;
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -87,9 +92,16 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_oi.registerControls();
     
+    PortForwarder.add(5800, "limelight.local", 5800);
+    PortForwarder.add(5801, "limelight.local", 5801);
+    PortForwarder.add(5805, "limelight.local", 5805);
+    
     popup.PopDown();
     intake.RetractIntake();
+    
     driveTrain.UpShift();
+    popup.FalshlighOff();
+    driveTrain.ClimberShifterOff();
 
     //autoProgram.setDefaultOption("PathA", new PathFollower(paths.getFirstPath()));
     //autoProgram.setDefaultOption("PathB", new PathFollower(paths.getSecondPath()));
@@ -117,9 +129,10 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     
     CommandScheduler.getInstance().run();
-    //limelight.LimelightOutput();
+    limelight.LimelightOutput();
     driveTrain.NavXOutput();
     popup.UpdateLoadState();
+    SmartDashboard.putNumber("Relay", Constants.flashlightMode);
 
     // Creates UsbCamera and MjpegServer [1] and connects them
     //CameraServer.getInstance().startAutomaticCapture();
@@ -187,10 +200,13 @@ public class Robot extends TimedRobot {
     driveTrain.setCoast();
     popup.PopDown();
     intake.RetractIntake();
+    falconShooter.StopShootingCells();
     driveTrain.UpShift();
     cpm.StopSpinControlPanel();
     Constants.ClimbMode = Constants.ClimbModeOff;
+    Constants.triggerState = Constants.triggerNotPressed;
     turret.TurretStayStill();
+
 
   }
 
@@ -224,11 +240,11 @@ public class Robot extends TimedRobot {
     //driveTrain.Curvature(OI.getLeftThrottleInput(), OI.getRightSteeringInputInverted());
 
     if (Constants.climbState == Constants.climbResting){
-      climber.ClimberMotor.set(ControlMode.PercentOutput, OI.controllerThrottleInputInverted());
+      climber.ClimberMotor.set(ControlMode.PercentOutput, OI.controllerThrottleInput());
     }
-    
 
-    } 
+
+  } 
   
 
   @Override

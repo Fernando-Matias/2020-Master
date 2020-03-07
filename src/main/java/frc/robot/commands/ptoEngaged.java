@@ -8,44 +8,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.FalconShooter;
-import frc.robot.subsystems.NeoShooter;
-import frc.robot.subsystems.Popup;
+import frc.robot.subsystems.DriveTrain;
 
-public class StopShootPowerCell extends CommandBase {
+public class ptoEngaged extends CommandBase {
   /**
-   * Creates a new StopShootPowerCell.
+   * Creates a new ptoEngaged.
    */
-  FalconShooter falconShooter = FalconShooter.getInstance();
-  NeoShooter neoShooter = NeoShooter.getInstance();
-  Popup popup = Popup.getInstance();
-
-  public StopShootPowerCell() {
+  DriveTrain driveTrain = DriveTrain.getInstance();
+  public ptoEngaged() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    driveTrain.ClimberShifterOn();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-    //falconShooter.StopShootingCells();
-
-    popup.PopDown();
-    //neoShooter.NeoNoShoot();
-    if (Constants.flashlightMode == Constants.flashlightOn){
-      popup.FalshlighOff();
-    }
-
-    falconShooter.StopShootingCells();
-    Constants.shootState = Constants.notDoneRamping;
-    Constants.triggerState = Constants.triggerNotPressed;
-    
   }
 
   // Called once the command ends or is interrupted.

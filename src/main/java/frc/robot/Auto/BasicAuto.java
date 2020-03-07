@@ -52,12 +52,12 @@ public class BasicAuto extends CommandBase {
     if ((Timer.getFPGATimestamp() - inittime) < 4){
 
     intake.ExtendIntake();
-    driveTrain.Curvature(0.35, 0.0);
+    driveTrain.Curvature(0.4, 0.0);
     System.out.println(Timer.getFPGATimestamp());
 
     }
  
-     if ((Timer.getFPGATimestamp() - inittime) >= 4 && (Timer.getFPGATimestamp() - inittime) <= 4.1 ){
+     if ((Timer.getFPGATimestamp() - inittime) >= 4 && (Timer.getFPGATimestamp() - inittime) <= 3.6 ){
        driveTrain.Curvature(0.0, 0.0);
        //popup.PopUp();
 
@@ -73,6 +73,13 @@ public class BasicAuto extends CommandBase {
 
 
     }  
+
+    if ((Timer.getFPGATimestamp() - inittime) >= 9){
+      popup.PopUp();
+      falconShooter.AutoRamping();
+      popup.UpBottomPulley();
+      popup.DownBottomPulley();
+    }
 
      //if ((Timer.getFPGATimestamp() - inittime) >= 10){
       //driveTrain.NavX40deg();
@@ -109,6 +116,10 @@ public class BasicAuto extends CommandBase {
     //popup.PopDown();
     //falconShooter.StopShootingCells();
     driveTrain.Curvature(0.0, 0.0);
+    driveTrain.setBrake();
+    popup.StopBottomPulley();
+    popup.StopTopPulley();
+    falconShooter.StopShootingCells();
 
 
 
@@ -118,6 +129,6 @@ public class BasicAuto extends CommandBase {
   @Override
   public boolean isFinished() {
     System.out.println("CHECK FINISH");
-    return (Timer.getFPGATimestamp() - inittime) >= 10 ;
+    return (Timer.getFPGATimestamp() - inittime) >= 14 ;
   }
 }

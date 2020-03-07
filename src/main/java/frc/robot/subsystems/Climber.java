@@ -41,8 +41,8 @@ public class Climber extends SubsystemBase {
   public Climber() {
     ClimberMotor = new TalonSRX(RobotMap.mClimberMotor_ID);
 
-    letfServo = new Servo(RobotMap.mTurretServo_ID);
-    rightServo = new Servo(RobotMap.mHoodServo_ID);
+    letfServo = new Servo(0);
+    rightServo = new Servo(1);
 
     ClimberMotor.configFactoryDefault();
     ClimberMotor.setNeutralMode(NeutralMode.Brake);
