@@ -98,10 +98,14 @@ public class Robot extends TimedRobot {
     
     popup.PopDown();
     intake.RetractIntake();
+    //turret.TurretStayStill();
+
     
     driveTrain.UpShift();
     popup.FalshlighOff();
     driveTrain.ClimberShifterOff();
+
+    climber.ClimberNotReady();
 
     //autoProgram.setDefaultOption("PathA", new PathFollower(paths.getFirstPath()));
     //autoProgram.setDefaultOption("PathB", new PathFollower(paths.getSecondPath()));
@@ -133,6 +137,7 @@ public class Robot extends TimedRobot {
     driveTrain.NavXOutput();
     popup.UpdateLoadState();
     SmartDashboard.putNumber("Relay", Constants.flashlightMode);
+    SmartDashboard.putNumber("Tracking ", Constants.trackState);
 
     // Creates UsbCamera and MjpegServer [1] and connects them
     //CameraServer.getInstance().startAutomaticCapture();

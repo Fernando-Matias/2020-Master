@@ -9,7 +9,7 @@ package frc.robot;
 
 import frc.robot.Input.*;
 import frc.robot.commands.*;
-import frc.robot.subsystems.NeoShooter;
+//import frc.robot.subsystems.NeoShooter;
 
 /**
  * @author Fernando Matias
@@ -52,7 +52,9 @@ public class OI {
       //Gamepad.getButtonY().whenHeld(new ClimberGoUp());
       //Gamepad.getButtonX().whenHeld(new ClimberGoDown());
       Gamepad.getButtonA().whenPressed(new IntakePowerCells());
-      //Gamepad.getButtonA().whenPressed(new PulleyAutomated());
+      Gamepad.getButtonA().whenPressed(new PulleyAutomated());
+
+      
       Gamepad.getButtonY().whenPressed(new SpinCPMTimed());
       Gamepad.getButtonX().whenPressed(new Backfeed());
       Gamepad.getButtonX().whenInactive(new StopBackfeed());

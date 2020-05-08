@@ -42,9 +42,15 @@ public class Turret extends SubsystemBase {
   } 
 
   public void turretSetSpeed(double speed){
+    if (speed < -1){
+      speed = -1;
+    }
+    if (speed > 1){
+      speed = 1;
+    }
     double newSpeed  = (speed + 1.0)* .5;
-    TurretServo.setSpeed(1.0);
-    turretSetSpeed(newSpeed);
+    TurretServo.set(newSpeed);
+    //turretSetSpeed(newSpeed);
   }
 
   public void turretRightTurn(){

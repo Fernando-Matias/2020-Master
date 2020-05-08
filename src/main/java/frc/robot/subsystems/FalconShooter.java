@@ -37,7 +37,7 @@ public class FalconShooter extends SubsystemBase {
 
   public void AutoRamping(){
     timer.reset();
-    timer.start();
+    //timer.start();
     if (Constants.rampingcompete == false){
       for (double i = 0; i <= 0.6; i = i + 0.1){
         SmartDashboard.putNumber("ramping", i);

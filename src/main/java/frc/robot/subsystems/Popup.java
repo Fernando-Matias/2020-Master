@@ -85,12 +85,12 @@ public class Popup extends SubsystemBase {
   }
 
   public void AutoPulleyUp(){
-    pulleyTopMotor.set(ControlMode.PercentOutput, 0.1);
-    pulleyTopMotor.set(ControlMode.PercentOutput, 0.1);
+    pulleyTopMotor.set(ControlMode.PercentOutput, 0.3);
+    pulleyTopMotor.set(ControlMode.PercentOutput, 0.3);
   }
   public void AutoPulleyDown (){
-    pulleyTopMotor.set(ControlMode.PercentOutput, -0.1);
-    pulleyTopMotor.set(ControlMode.PercentOutput, -0.1);
+    pulleyTopMotor.set(ControlMode.PercentOutput, -0.3);
+    pulleyTopMotor.set(ControlMode.PercentOutput, -0.3);
   }
 
   public void StopTopPulley() {

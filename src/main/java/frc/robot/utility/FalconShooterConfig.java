@@ -22,7 +22,7 @@ public class FalconShooterConfig extends WPI_TalonFX{
     public FalconShooterConfig(int deviceNumber) {
         super(deviceNumber);
 		configFactoryDefault();
-		configVoltageCompSaturation(12, 10);
+		configVoltageCompSaturation(12);
 	//	enableCurrentLimit(true);
 	//	configContinuousCurrentLimit(40);
 	//	configPeakCurrentDuration(100);

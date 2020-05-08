@@ -29,21 +29,31 @@ public class Target extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Constants.trackState = Constants.trackON;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Constants.trackState == Constants.trackOFF){
-      limelight.setOn();
-      driveTrain.setBrake();
-      //limelight.SteeringAdjust();
-    }
+    System.out.println("top 0");
+
+    // if(Constants.trackState == Constants.trackOFF){
+    //   limelight.setOn();
+    //   driveTrain.setBrake();
+    //   //limelight.SteeringAdjust();
+    // }
+    System.out.println("top");
+    
       
     if (limelight.getLimelightTarget() == 1){
       double kp = .1;
       turret.turretSetSpeed(limelight.getXOffsetFromTarget()*kp);
     }
+    else {
+      turret.TurretStayStill();
+    }
+    
+    System.out.println("this works");
  
     // if (limelight.getLimelightTarget() == 1 && limelight.getXOffsetFromTarget() > 1.0 && Constants.TurretAimState == Constants.TurretAimStateAuto){
     //   turret.turretLeftTurn();
@@ -67,12 +77,15 @@ public class Target extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // if (Constants.trackState == Constants.trackOFF){
-    //   return true;
-    // }
-    // else{
-    //   return false;
-    // }
-    return false;
+    if (Constants.trackState == Constants.trackOFF){
+      turret.TurretStayStill();
+      return true;
+
+    }
+    else{
+      return false;
+
+    }
+    //return false;
   }
 }

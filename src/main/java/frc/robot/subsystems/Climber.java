@@ -41,8 +41,8 @@ public class Climber extends SubsystemBase {
   public Climber() {
     ClimberMotor = new TalonSRX(RobotMap.mClimberMotor_ID);
 
-    letfServo = new Servo(0);
-    rightServo = new Servo(1);
+    letfServo = new Servo(1);
+    rightServo = new Servo(0);
 
     ClimberMotor.configFactoryDefault();
     ClimberMotor.setNeutralMode(NeutralMode.Brake);
@@ -69,15 +69,17 @@ public class Climber extends SubsystemBase {
 
   public void ClimberInPosition(){
     rightServo.setSpeed(0.5);
-    rightServo.set(0.0);
+    rightServo.set(0.7);
+    
     letfServo.setSpeed(0.5);
-    letfServo.set(0.0);
+    letfServo.set(0.3);
   }
   public void ClimberNotReady(){
     rightServo.setSpeed(0.5);
     rightServo.set(0.4);
+
     letfServo.setSpeed(0.5);
-    letfServo.set(0.4);
+    letfServo.set(0.5);
   }
 
   @Override

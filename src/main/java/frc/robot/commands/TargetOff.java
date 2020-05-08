@@ -34,9 +34,9 @@ public class TargetOff extends CommandBase {
   @Override
   public void execute() {
     if (Constants.trackState == Constants.trackON){
-      limelight.setOff();
+      //limelight.setOff();
       Constants.trackState = Constants.trackOFF;
-      driveTrain.setCoast();
+      //driveTrain.setCoast();
     }
   }
 
